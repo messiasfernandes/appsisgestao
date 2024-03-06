@@ -1,16 +1,25 @@
+import { PrimengModule } from './shared/primeng/primeng.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { MenuLateralComponent } from './shared/menu-lateral/menu-lateral.component';
+import { ProdutolistaComponent } from './produto/produtolista/produtolista.component';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MenuLateralComponent,
+    ProdutolistaComponent,
+
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    PrimengModule
   ],
   providers: [],
   bootstrap: [AppComponent]
