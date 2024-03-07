@@ -103,7 +103,7 @@ export class MenuLateralComponent implements OnInit {
       },
       {
         label: 'Vendas',
-        icon: ' fa-solid fa-cart-shopping fa-xl',
+        icon: ' fa-solid fa-cart-shopping ',
         items: [
           {
             label: 'Vendas',

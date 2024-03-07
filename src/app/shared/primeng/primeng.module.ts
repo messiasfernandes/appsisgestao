@@ -7,6 +7,7 @@ import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
+import { PaginatorModule } from 'primeng/paginator';
 @NgModule({
   declarations: [],
   imports: [
@@ -19,7 +20,8 @@ import { TableModule } from 'primeng/table';
     CardModule,
     InputTextModule,
     ButtonModule,
-    TableModule
+    TableModule,
+    PaginatorModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 })

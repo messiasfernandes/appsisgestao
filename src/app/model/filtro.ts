@@ -1,5 +1,5 @@
 export class Filtro {
-  paramentro?: string;
+  parametro?: string;
   pagina = 0;
   itensPorPagina = 5;
 }

@@ -2,7 +2,7 @@
   <div class="col-12">
     <p-toolbar>
 
-      <div class="p-toolbar-group-left">
+      <div  class="p-toolbar-group-left">
 
         <a href="javascript:;" (click)="exibindoMenu=!exibindoMenu"> <i class="pi pi-bars"
             style="font-size: 2rem ;  color: white;"></i></a>
@@ -20,7 +20,7 @@
 
 <div class="sidebar" [ngClass]="{'sidebar-collapsed': exibindoMenu}" >
 
-  <p-panelMenu [model]="menu" [style]="{'visibility': exibindoMenu ? 'hidden' : 'visible'}"  ></p-panelMenu>
+  <p-panelMenu [model]="menu" [style]="{'sidebar-collapsed': exibindoMenu}" ></p-panelMenu>
 
 
 </div>

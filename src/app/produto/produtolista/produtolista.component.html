@@ -7,21 +7,22 @@
       <div class="col-12 md:col-6 lg:col-5 p-fluid">
         <form autocomplete="off" (ngSubmit)="buscar()">
 
-          <span class="p-float-label p-input-icon-right">
 
-            <div class="p-inputgroup">
-              <input type="text" id="inputgroup" name="paramentro" pInputText [(ngModel)]="produtofiltro.paramentro"
-                class="p-inputtext" placeholder="id, nome do produto, código ean 13" />
-              <label for="inputgroup">Pesquisar</label>
-              <button type="button" pButton icon="pi pi-refresh" styleClass="p-button-warn"></button>
-            </div>
-          </span>
+
+          <div class="p-inputgroup">
+            <input type="text" id="inputgroup" name="paramentro" pInputText [(ngModel)]="produtofiltro.parametro"
+              class="p-inputtext" placeholder="pesquisar por id, nome do produto, código ean 13" />
+
+            <button type="button" (click)="buscar()" pButton icon="fa-solid fa-search" class=" p-button-lg"
+              styleClass="p-button-warn"></button>
+          </div>
+
 
         </form>
       </div>
       <div class="col-12 md:col-6 lg:col-2 p-fluid">
-        <button pButton icon="pi pi-plus-circle" type="button" pTooltip="Adicionar Produto" label="novo" routerLink="/produtos/novo"
-            routerLinkActive="active-link" class="p-button-success p-button-lg"></button>
+        <button pButton icon="pi pi-plus-circle" type="button" pTooltip="Adicionar Produto" label="novo"
+          routerLink="/produtos/novo" routerLinkActive="active-link" class="p-button-success p-button-lg"></button>
       </div>
 
 
@@ -32,9 +33,11 @@
     <div class="grid">
       <div class="col-12">
         <p-table [value]="produtos" [paginator]="true" selectionMode="single" [rowHover]="true"
-          [rows]="produtofiltro.itensPorPagina" responsiveLayout="stack" styleClass="p-datatable-gridlines p-datatable-sm p-datatable-customer"
-           dataKey="id" [lazy]="true"
-          (onLazyLoad)="aoMudarPagina($event)">
+          [rows]="produtofiltro.itensPorPagina" responsiveLayout="stack"
+          styleClass="p-datatable-gridlines p-datatable-sm p-datatable-customer" dataKey="id" [lazy]="true"
+          (onLazyLoad)="aoMudarPagina($event)" [showCurrentPageReport]="true" [totalRecords]="totalRegistros"
+          [rowsPerPageOptions]="[2,4,10,20]"
+          currentPageReportTemplate="total de registro  {first} de {last} total de registros  {totalRecords}">
           <ng-template pTemplate="caption">
 
           </ng-template>
@@ -44,11 +47,11 @@
               <th>Produto
               </th>
               <th>Marca</th>
-              <th> Subgrupo</th>
-              <th> Preço</th>
+              <th style="text-align: center;"> Subgrupo</th>
+              <th style="text-align: right;"> Preço</th>
 
-              <th>Estoque </th>
-              <th style="text-align: center;" >Ações</th>
+              <th style="text-align: center;">Estoque </th>
+              <th style="text-align: center;">Ações</th>
             </tr>
           </ng-template>
           <ng-template pTemplate="body" let-produto>
@@ -56,20 +59,25 @@
               <td>{{produto.id}}</td>
               <td>{{produto.produto}}</td>
               <td> {{produto.marca}}</td>
-              <td>{{produto.subgrupo }}</td>
-              <td>{{produto.precovenda| currency }}</td>
-              <td> {{produto.situacao}}</td>
+              <td style="text-align: center;">{{produto.subgrupo }}</td>
+              <td style="text-align: right;">{{produto.precovenda| currency: 'BRL' }}</td>
+              <td style="text-align: center;">
+                <span [style.color]="produto.situacao === 'Disponvel' ? 'blue' : 'red'">{{ produto.situacao
+                  }}</span>
+
+
+              </td>
 
               <td>
 
                 <div class=" flex align-items-center justify-content-center ">
                   <a>
 
-                    <button pButton pRipple icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"
+                    <button pButton pRipple icon="fa-solid fa-pen" pTooltip="Editar" tooltipPosition="top"
                       [routerLink]="['/produtos', produto.id]" class="p-button-primary mr-2 p-button-text"
                       type="button"></button>
                   </a>
-                  <button pButton pRipple icon="pi pi-trash " type="button" pTooltip="Excluir"
+                  <button pButton pRipple icon="fa-solid fa-trash" type="button" pTooltip="Excluir"
                     tooltipPosition="top" class=" p-button-danger mr2 p-button-text "></button>
                 </div>
 

@@ -1,3 +1,8 @@
 .content {
-  margin-left: 250px; /* Ajuste conforme a largura da barra lateral */
+
+
+  margin-left: 250px;
+}
+.sidebar-collapsed {
+  width: 52px; /* Largura reduzida quando a barra lateral está recolhida */
 }

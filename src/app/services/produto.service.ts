@@ -21,8 +21,8 @@ export class ProdutoService {
       .set('size', filtro.itensPorPagina.toString())
     //  .set('sort', 'nomeproduto');
 
-    if (filtro.paramentro) {
-      params = params.set('paramentro', filtro.paramentro);
+    if (filtro.parametro) {
+      params = params.set('parametro', filtro.parametro);
     }
     return this.http
       .get<any>(`${config.baseurl}produtos?`, { headers, params })
