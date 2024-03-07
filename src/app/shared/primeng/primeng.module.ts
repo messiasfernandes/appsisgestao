@@ -6,6 +6,7 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
+import { TableModule } from 'primeng/table';
 @NgModule({
   declarations: [],
   imports: [
@@ -17,7 +18,8 @@ import { ButtonModule } from 'primeng/button';
     ToolbarModule,
     CardModule,
     InputTextModule,
-    ButtonModule
+    ButtonModule,
+    TableModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 })

@@ -6,8 +6,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MenuLateralComponent } from './shared/menu-lateral/menu-lateral.component';
 import { ProdutolistaComponent } from './produto/produtolista/produtolista.component';
-
-
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ProdutoService } from './services/produto.service';
+import { FormsModule } from "@angular/forms";
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,9 +20,11 @@ import { ProdutolistaComponent } from './produto/produtolista/produtolista.compo
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    PrimengModule
+    PrimengModule,
+    HttpClientModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [HttpClientModule, ProdutoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

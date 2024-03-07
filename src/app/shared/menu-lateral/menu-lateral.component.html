@@ -20,7 +20,7 @@
 
 <div class="sidebar" [ngClass]="{'sidebar-collapsed': exibindoMenu}" >
 
-  <p-panelMenu [model]="menu" [style]="{'width':'250px' }"></p-panelMenu>
+  <p-panelMenu [model]="menu" [style]="{'visibility': exibindoMenu ? 'hidden' : 'visible'}"  ></p-panelMenu>
 
 
 </div>

@@ -1,27 +1,90 @@
 <div class="container">
   <p-card header="Lista de Produtos">
 
+
     <div class="grid">
 
       <div class="col-12 md:col-6 lg:col-5 p-fluid">
-        <div class="p-inputgroup p-fluid">
-        <span class="p-float-label">
+        <form autocomplete="off" (ngSubmit)="buscar()">
+
           <span class="p-float-label p-input-icon-right">
 
-            <input type="text" id="inputgroup" name="paramentro" pInputText
-              class="p-inputtext" placeholder="id, nome do produto, código ean 13" />
-            <label for="inputgroup">Pesquisar</label>
+            <div class="p-inputgroup">
+              <input type="text" id="inputgroup" name="paramentro" pInputText [(ngModel)]="produtofiltro.paramentro"
+                class="p-inputtext" placeholder="id, nome do produto, código ean 13" />
+              <label for="inputgroup">Pesquisar</label>
+              <button type="button" pButton icon="pi pi-refresh" styleClass="p-button-warn"></button>
+            </div>
           </span>
-        </span>
-        <button type="button" pButton icon="pi pi-search" styleClass="p-button-warn"></button>
-        </div>
+
+        </form>
       </div>
-      <div class="col-12 md:col-6 lg:col-3">
-          <div class="text-center p-3 border-round-sm bg-primary font-bold">col-12 md:col-6 lg:col-3</div>
+      <div class="col-12 md:col-6 lg:col-2 p-fluid">
+        <button pButton icon="pi pi-plus-circle" type="button" pTooltip="Adicionar Produto" label="novo" routerLink="/produtos/novo"
+            routerLinkActive="active-link" class="p-button-success p-button-lg"></button>
       </div>
-      <div class="col-12 md:col-6 lg:col-3">
-          <div class="text-center p-3 border-round-sm bg-primary font-bold">col-12 md:col-6 lg:col-3</div>
+
+
+
+
+    </div>
+
+    <div class="grid">
+      <div class="col-12">
+        <p-table [value]="produtos" [paginator]="true" selectionMode="single" [rowHover]="true"
+          [rows]="produtofiltro.itensPorPagina" responsiveLayout="stack" styleClass="p-datatable-gridlines p-datatable-sm p-datatable-customer"
+           dataKey="id" [lazy]="true"
+          (onLazyLoad)="aoMudarPagina($event)">
+          <ng-template pTemplate="caption">
+
+          </ng-template>
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Código</th>
+              <th>Produto
+              </th>
+              <th>Marca</th>
+              <th> Subgrupo</th>
+              <th> Preço</th>
+
+              <th>Estoque </th>
+              <th style="text-align: center;" >Ações</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-produto>
+            <tr [pSelectableRow]="produto">
+              <td>{{produto.id}}</td>
+              <td>{{produto.produto}}</td>
+              <td> {{produto.marca}}</td>
+              <td>{{produto.subgrupo }}</td>
+              <td>{{produto.precovenda| currency }}</td>
+              <td> {{produto.situacao}}</td>
+
+              <td>
+
+                <div class=" flex align-items-center justify-content-center ">
+                  <a>
+
+                    <button pButton pRipple icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"
+                      [routerLink]="['/produtos', produto.id]" class="p-button-primary mr-2 p-button-text"
+                      type="button"></button>
+                  </a>
+                  <button pButton pRipple icon="pi pi-trash " type="button" pTooltip="Excluir"
+                    tooltipPosition="top" class=" p-button-danger mr2 p-button-text "></button>
+                </div>
+
+              </td>
+            </tr>
+          </ng-template>
+
+        </p-table>
+
+
       </div>
-  </div>
+    </div>
+
+
+
+
   </p-card>
 </div>
