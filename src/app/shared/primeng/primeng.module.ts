@@ -9,6 +9,7 @@ import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { PaginatorModule } from 'primeng/paginator';
 import { SidebarModule } from 'primeng/sidebar';
+import { DividerModule } from 'primeng/divider';
 @NgModule({
   declarations: [],
   imports: [
@@ -23,7 +24,8 @@ import { SidebarModule } from 'primeng/sidebar';
     ButtonModule,
     TableModule,
     PaginatorModule,
-    SidebarModule
+    SidebarModule,
+    DividerModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 })

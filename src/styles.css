@@ -13,6 +13,10 @@ body{
   margin-right: 5px;
 }
 @media screen and (max-width: 810px) {
+  container {
+    width: 1170px;
+    margin: 0 auto;
+}
   .ui-tabs.ui-tabs-top > .ui-tabs-nav li{
       width: 95% !important;
   }
@@ -27,6 +31,4 @@ body{
  flex-flow: column;
  height: 100%;
 
-
 }
-

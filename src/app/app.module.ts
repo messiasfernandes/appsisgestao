@@ -13,6 +13,7 @@ import { FormsModule } from "@angular/forms";
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { registerLocaleData } from '@angular/common';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { ProdutocadastroComponent } from './produto/produtocadastro/produtocadastro.component';
 
 registerLocaleData(localePt, 'pt-BR');
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -23,6 +24,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     AppComponent,
     MenuLateralComponent,
     ProdutolistaComponent,
+    ProdutocadastroComponent,
 
   ],
   imports: [
