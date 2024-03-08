@@ -8,6 +8,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { PaginatorModule } from 'primeng/paginator';
+import { SidebarModule } from 'primeng/sidebar';
 @NgModule({
   declarations: [],
   imports: [
@@ -21,7 +22,8 @@ import { PaginatorModule } from 'primeng/paginator';
     InputTextModule,
     ButtonModule,
     TableModule,
-    PaginatorModule
+    PaginatorModule,
+    SidebarModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 })

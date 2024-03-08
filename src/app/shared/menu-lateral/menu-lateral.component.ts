@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuItem, PrimeIcons } from 'primeng/api';
+import { MenulateralService } from 'src/app/service/meulateral.service';
 @Component({
   selector: 'app-menu-lateral',
   templateUrl: './menu-lateral.component.html',
@@ -8,10 +9,11 @@ import { MenuItem, PrimeIcons } from 'primeng/api';
 })
 export class MenuLateralComponent implements OnInit {
   exibindoMenu = false;
-  constructor(private router: Router) {}
+  constructor(private router: Router, private serviceMenuLateral: MenulateralService) {}
   menu: MenuItem[] = [];
-  mostrarMenu() {
-    this.exibindoMenu = !this.exibindoMenu;
+  toggleMenu() {
+    this.exibindoMenu= this.serviceMenuLateral.toggleMenu();
+
   }
 
 
