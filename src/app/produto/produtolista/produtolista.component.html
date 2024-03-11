@@ -59,6 +59,7 @@
               <td style="text-align: center;">{{produto.subgrupo }}</td>
               <td style="text-align: right;">{{produto.precovenda| currency: 'BRL' }}</td>
               <td style="text-align: center;">
+
                 <span [style.color]="produto.situacao === 'Disponvel' ? 'blue' : 'red'">{{ produto.situacao
                   }}</span>
 

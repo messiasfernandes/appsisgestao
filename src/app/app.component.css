@@ -1,9 +1,9 @@
 .content {
-  margin-left: 245px;
+  margin-left: 255px;
   transition: transform .3s;
 
 }
 
-.sidebar-collapsed .container {
-  width: calc(100% - 55px); /* Largura do container com o menu lateral aberto */
-}
+/*.sidebar-collapsed .container {
+  width: calc(100% - 55px); /* Largura do container com o menu lateral aberto
+}*/

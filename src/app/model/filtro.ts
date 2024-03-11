@@ -1,6 +1,6 @@
 export class Filtro {
   parametro?: string;
-  pagina = 0;
-  itensPorPagina = 5;
+  pagina: number = 0;
+  itensPorPagina: number = 8;
 }
 

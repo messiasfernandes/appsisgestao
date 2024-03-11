@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuItem, PrimeIcons } from 'primeng/api';
+import { Divider } from 'primeng/divider';
 import { MenulateralService } from 'src/app/service/meulateral.service';
 @Component({
   selector: 'app-menu-lateral',
@@ -12,8 +13,12 @@ export class MenuLateralComponent implements OnInit {
   constructor(private router: Router, private serviceMenuLateral: MenulateralService) {}
   menu: MenuItem[] = [];
   toggleMenu() {
-    this.exibindoMenu= this.serviceMenuLateral.toggleMenu();
+     this.serviceMenuLateral.toggleMenu();
 
+  }
+  closeSidebar() {
+    this.exibindoMenu = !this.exibindoMenu;
+;
   }
 
 
@@ -49,16 +54,17 @@ export class MenuLateralComponent implements OnInit {
             label: 'Produtos',
             icon: ' fa-solid fa-boxes-packing fa-xl"',
             routerLink: ['/produtos'],
+           command: () => this.closeSidebar(),
 
-          //  command: () => this.closeSidebar(),
           },
-        ],
 
+        ],
+        separator:true,
       },
 
       {
         label: 'Estoque',
-        icon: PrimeIcons.ANGLE_DOUBLE_DOWN,
+        icon: 'fa-solid fa-truck-ramp-box',
         items: [
           {
             label: 'Estoque Movimento',

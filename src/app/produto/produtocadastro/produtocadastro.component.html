@@ -1,6 +1,45 @@
 <div class="container">
-<p-divider layout="vertical" class="sidebar" >
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laboru
 
-</p-divider>
+
+
+  <p-card header="Cadastro de Produtos" subheader="Card Subheader">
+    <div class="card">
+
+
+      <form #f="ngForm" autocomplete="off" (ngSubmit)="salvar(f)">
+        <div class="grid nested-grid">
+
+          <div class="col-8 md:col-6 lg:col-8 p-fluid">
+            <div class="grid">
+              <div class="col-12 md:col-6 lg:col-6 p-fluid">
+                <span class="p-float-label">
+                  <input type="text" id="produtonome" name="nome" required="true" pInputText [(ngModel)]="produto.nome"
+                    placeholder="nome produto" #nomeProduto="ngModel" />
+
+                  <label for="produtonome">Nome Produto</label>
+                </span>
+
+              </div>
+              <div class="col-12 md:col-6 lg:col-6 p-fluid ">
+                <div class="p-inputgroup">
+                  <span class="p-float-label">
+                    <input type="text" id="nomeMarca" readonly="true" name="nomeMarca" pInputText
+                      [(ngModel)]="marca.nomeMarca" placeholder="Marca" />
+
+
+                    <label for="marca">Marca</label>
+                  </span>
+                  <button pButton pRipple type="button" (click)="showMarca()" icon="fa-solid fa-plus"
+                    pTooltip="Adicionar Marca" class="p-button-lg p-button-success "></button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </form>
+    </div>
+
+  </p-card>
 </div>

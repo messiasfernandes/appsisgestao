@@ -10,6 +10,7 @@ import { TableModule } from 'primeng/table';
 import { PaginatorModule } from 'primeng/paginator';
 import { SidebarModule } from 'primeng/sidebar';
 import { DividerModule } from 'primeng/divider';
+import { TagModule } from 'primeng/tag';
 @NgModule({
   declarations: [],
   imports: [
@@ -25,7 +26,8 @@ import { DividerModule } from 'primeng/divider';
     TableModule,
     PaginatorModule,
     SidebarModule,
-    DividerModule
+    DividerModule,
+    TagModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 })

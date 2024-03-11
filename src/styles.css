@@ -29,6 +29,12 @@ body{
  position: relative;
  display: flex;
  flex-flow: column;
- height: 100%;
 
+
+}
+.bloco1{
+  flex-grow: 2;
+}
+.bloco2{
+  flex-grow: 8;
 }

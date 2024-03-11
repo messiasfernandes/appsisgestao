@@ -112,6 +112,7 @@ font-weight: bold;
 :host ::ng-deep .p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link {
   color: #000 !important;
   background-color: #1c2230;
+  width: 260px;
 
 }
 
@@ -139,8 +140,8 @@ font-weight: bold;
   color: rgba(0, 0, 0, 0.87);
   border: 0 none;
   box-shadow: none;
-  z-index: 9998;
-  width: 255px;
+  z-index: 999;
+  width: 280px;
 }
 
  :host ::ng-deep .p-sidebar .p-sidebar-header .p-sidebar-close, .p-sidebar .p-sidebar-header .p-sidebar-icon {

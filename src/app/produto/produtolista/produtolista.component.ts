@@ -22,6 +22,7 @@ buscar(pagina: number = 0): void {
       this.produtos = dados.produtosreposta;
       console.log(this.produtos)
       this.totalRegistros = dados.total;
+
     });
 }
 
@@ -29,4 +30,8 @@ aoMudarPagina(event: LazyLoadEvent) {
     const pagina = event!.first! / event!.rows!;
     this.buscar(pagina);
 }
+
+
 }
+
+
