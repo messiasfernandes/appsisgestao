@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuItem, PrimeIcons } from 'primeng/api';
-import { Divider } from 'primeng/divider';
 import { MenulateralService } from 'src/app/service/meulateral.service';
 @Component({
   selector: 'app-menu-lateral',

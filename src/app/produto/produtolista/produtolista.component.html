@@ -10,9 +10,11 @@
 
 
           <div class="p-inputgroup">
+            <span class="p-float-label">
             <input type="text" id="inputgroup" name="paramentro" pInputText [(ngModel)]="produtofiltro.parametro"
               class="p-inputtext" placeholder="pesquisar por id, nome do produto, código ean 13" />
-
+              <label for="marca">Pesquisar</label>
+            </span>
             <button type="button" (click)="buscar()" pButton icon="fa-solid fa-search" class=" p-button-lg"
               styleClass="p-button-warn"></button>
           </div>
@@ -32,9 +34,8 @@
         <p-table [value]="produtos" [paginator]="true" selectionMode="single" [rowHover]="true"
           [rows]="produtofiltro.itensPorPagina" responsiveLayout="stack"
           styleClass="p-datatable-gridlines p-datatable-sm p-datatable-customer" dataKey="id" [lazy]="true"
-          (onLazyLoad)="aoMudarPagina($event)" [showCurrentPageReport]="true" [totalRecords]="totalRegistros"
-          [rowsPerPageOptions]="[2,4,10,20]"
-          currentPageReportTemplate="total de registro  {first} de {last} total de registros  {totalRecords}">
+          (onLazyLoad)="aoMudarPagina($event)"  [totalRecords]="totalRegistros"
+          >
           <ng-template pTemplate="caption">
 
           </ng-template>

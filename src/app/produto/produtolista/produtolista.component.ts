@@ -12,6 +12,8 @@ export class ProdutolistaComponent  {
   produtofiltro = new Filtro()
   produtos : any[] = [];
   totalRegistros = 0;
+
+
 constructor( private produtoService : ProdutoService) { }
 
 buscar(pagina: number = 0): void {

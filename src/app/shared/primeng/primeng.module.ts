@@ -11,6 +11,8 @@ import { PaginatorModule } from 'primeng/paginator';
 import { SidebarModule } from 'primeng/sidebar';
 import { DividerModule } from 'primeng/divider';
 import { TagModule } from 'primeng/tag';
+import { InputNumberModule } from 'primeng/inputnumber';
+import {DropdownModule} from 'primeng/dropdown';
 @NgModule({
   declarations: [],
   imports: [
@@ -27,7 +29,9 @@ import { TagModule } from 'primeng/tag';
     PaginatorModule,
     SidebarModule,
     DividerModule,
-    TagModule
+    TagModule,
+    InputNumberModule,
+    DropdownModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 })

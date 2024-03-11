@@ -11,7 +11,7 @@
 
           <div class="col-8 md:col-6 lg:col-8 p-fluid">
             <div class="grid">
-              <div class="col-12 md:col-6 lg:col-6 p-fluid">
+              <div class="col-12 md:col-6 lg:col-7 p-fluid">
                 <span class="p-float-label">
                   <input type="text" id="produtonome" name="nome" required="true" pInputText [(ngModel)]="produto.nome"
                     placeholder="nome produto" #nomeProduto="ngModel" />
@@ -20,7 +20,7 @@
                 </span>
 
               </div>
-              <div class="col-12 md:col-6 lg:col-6 p-fluid ">
+              <div class="col-12 md:col-6 lg:col-5 p-fluid ">
                 <div class="p-inputgroup">
                   <span class="p-float-label">
                     <input type="text" id="nomeMarca" readonly="true" name="nomeMarca" pInputText
@@ -34,11 +34,72 @@
                 </div>
               </div>
 
+            <div class="col-12 md:col-6 lg:col-6 p-fluid">
+              <div class="p-inputgroup">
+                <span class="p-float-label">
+                  <input type="text" id="nomeSubgrupo" readonly="true" name="nomeSubgrupo" pInputText
+                    [(ngModel)]="subgrupo.nomeSubgrupo" placeholder="subgrupo" />
+
+
+                  <label for="nomeSubgrupo">Subgrupo</label>
+                </span>
+                <button pButton pRipple type="button" icon="pi pi-plus" tooltipPosition="top"
+                  (click)="showSubgrupo()" pTooltip="Adicionar Subgrupo"
+                  class="p-button-lg p-button-info"></button>
+              </div>
             </div>
+            <div class="col-12 md:col-6 lg:col-3 p-fluid">
+              <span class="p-float-label">
+                <p-inputNumber inputId="custo" currency="BRL" mode="currency" name="precocusto" locale="pt-Br"
+                  [(ngModel)]="produto.preco.precocusto" [minFractionDigits]="2"></p-inputNumber>
+                <label for="custo"> Preço Custo</label>
+              </span>
+            </div>
+            <div class="col-12 md:col-6 lg:col-3 p-fluid">
+              <span class="p-float-label">
+                <p-inputNumber inputId="custom" currency="BRL" [required]="true" name="customedio" mode="currency"
+                  locale="pt-Br" [(ngModel)]="produto.preco.customedio" [minFractionDigits]="2"></p-inputNumber>
+                <label for="custom"> Custo Médio</label>
+
+              </span>
+            </div>
+            <div class="col-12 md:col-6 lg:col-3 p-fluid ">
+              <span class="p-float-label">
+                <p-inputNumber inputId="preco_venda" currency="BRL" mode="currency" name="precovenda"
+                  locale="pt-Br" [(ngModel)]="produto.preco.precovenda" [minFractionDigits]="2"></p-inputNumber>
+                <label for="preco_venda"> Preço de Venda</label>
+              </span>
+            </div>
+            <div class="col-12 md:col-6 lg:col-4 p-fluid ">
+              <span class="p-float-label">
+              <p-dropdown [options]="tipoproduto"   appendTo="body" [(ngModel)]="produto.tipoProduto"  name="tipoProduto" optionLabel="label"></p-dropdown>
+              <label for="dropdown">Tipo Produto</label>
+            </span>
+            </div>
+
           </div>
 
+
+
+
+
+
+
         </div>
+
+        <div class="col-4 md:col-6 lg:col-4 p-fluid">
+          <div class="h-full picture" (click)="upLoad()">
+
+            <span class="picture__image">
+              <img [src]="url" class="picture__img" *ngIf="url" />
+              <span *ngIf="!url" class="centered-text">{{ pictureImageTxt }}</span>
+            </span>
+
+          </div>
+        </div>
+      </div>
       </form>
+
     </div>
 
   </p-card>

@@ -1,0 +1,30 @@
+#picture__input {
+  display: none;
+}
+.picture {
+
+  width: 100%;
+  aspect-ratio: 16/9;
+
+  justify-content: flex-start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 2px dashed currentcolor;
+  cursor: pointer;
+  font-family: sans-serif;
+
+  transition: color 300ms ease-in-out, background 300ms ease-in-out;
+  outline: none;
+  overflow: hidden;
+
+
+}
+.picture__img {
+  display: flex;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* Isso mantém a proporção da imagem e evita distorções */
+  margin-right: 10px; /* Adiciona margem entre as imagens */
+}

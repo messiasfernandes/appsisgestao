@@ -18,7 +18,7 @@
   </div>
 </div>
 <p-sidebar [(visible)]="exibindoMenu"  [showCloseIcon]="true" [baseZIndex]="10000">
-  <p-panelMenu [model]="menu"  >
+  <p-panelMenu *ngIf="exibindoMenu" autoDisplay="true" [model]="menu"  >
 
   </p-panelMenu>
 
