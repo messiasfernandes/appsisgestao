@@ -14,6 +14,7 @@ import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-transla
 import { registerLocaleData } from '@angular/common';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ProdutocadastroComponent } from './produto/produtocadastro/produtocadastro.component';
+import { MessageService } from 'primeng/api';
 
 registerLocaleData(localePt, 'pt-BR');
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -42,7 +43,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
       }
     }),
   ],
-  providers: [HttpClientModule, ProdutoService, TranslateService, { provide: LOCALE_ID, useValue: 'pt-BR' },
+  providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }, HttpClientModule, ProdutoService, TranslateService, MessageService,
   ],
   bootstrap: [AppComponent]
 })

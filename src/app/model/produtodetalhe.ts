@@ -1,7 +1,9 @@
+import { Unidademedida } from "../enumerado/unidademedida"
+
 export class Produtodetalhe {
   id?: number
   codigobarras?: string
   desconto?: number
-  mutiplicado?: number
-  unidadeMedida?:string
+  mutiplicador?: number
+  unidadeMedida?:Unidademedida
 }

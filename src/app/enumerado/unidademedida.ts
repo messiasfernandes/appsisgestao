@@ -1,10 +1,10 @@
 export enum Unidademedida {
-  Caixa,
-  Fardo,
-  Grama,
-  Litro,
-  Metro,
-  Pacote,
-  Peca,
-  Unidade
+  Caixa='Caixa',
+  Fardo='Fardo',
+  Grama='Grama',
+  Litro='Litro',
+  Metro='Metro',
+  Pacote='Pacote',
+  Peca='Peca',
+  Unidade='Unidade'
 }

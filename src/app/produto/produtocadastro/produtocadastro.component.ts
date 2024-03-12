@@ -1,14 +1,20 @@
+import { Produtodetalhe } from './../../model/produtodetalhe';
+import { ErrohandlerService } from './../../services/errohandler.service';
 import { FotoProdutoService } from './../../services/fotoproduto.service';
 import { Marca } from './../../model/marca';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { SelectItem } from 'primeng/api';
+import { MessageService, SelectItem } from 'primeng/api';
 import { TipoProduto } from 'src/app/enumerado/tipoproduto';
 import { Produto } from 'src/app/model/produto';
 import { Subgrupo } from 'src/app/model/subgrupo';
 import { ProdutoService } from 'src/app/services/produto.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpResponse } from '@angular/common/http';
+import { throwError } from 'rxjs/internal/observable/throwError';
+import { catchError } from 'rxjs/internal/operators/catchError';
+import { GeradoreanService } from 'src/app/services/geradorean.service';
+import { Unidademedida } from 'src/app/enumerado/unidademedida';
 
 @Component({
   selector: 'app-produtocadastro',
@@ -22,16 +28,25 @@ export class ProdutocadastroComponent implements OnInit {
   valoresEnum = Object.values(TipoProduto);
   pictureImageTxt = 'Escolha uma imagem';
   url: string = '';
+  produtoDetalhe= new Produtodetalhe()
   tipoproduto: SelectItem[] = [];
-
+  unidadmedidas : SelectItem[] = [];
   constructor(
     private fotoProdutoService: FotoProdutoService,
     private produtoService: ProdutoService,
+    private errorHandler: ErrohandlerService,
     private idParametro: ActivatedRoute,
+    private messageService: MessageService,
     private router: Router,
+    private gerarEa13Service :GeradoreanService
   ) {
     this.tipoproduto = Object.keys(TipoProduto).map((key) => ({
       label: TipoProduto[key],
+      value: key,
+    }));
+
+    this.unidadmedidas = Object.keys(Unidademedida).map((key) => ({
+      label: Unidademedida[key],
       value: key,
     }));
   }
@@ -63,44 +78,16 @@ export class ProdutocadastroComponent implements OnInit {
   }
 
   salvar(form: NgForm) {
-
-    this.produto.subgrupo = this.subgrupo;
-    this.produto.marca= this.marca;
-console.log(this.produto.id )
     if (this.produto.id != null) {
-      this.produtoService
-        .editar(this.produto)
-       // .pipe(
-       //   catchError((erro: any) => {
-          //  return throwError(() => this.errorHandler.erroHandler(erro));
-       //   })
-       // )
-        .subscribe((response: HttpResponse<any>) => {
-          const statusCode = response.status;
-          console.log(statusCode);
-          if (statusCode === 200) {
-            console.log("ok")
-       //     this.messageService.add({
-         //     severity: 'info',
-       //       detail: 'Produto editado com sucesso!',
-       //     });
-          }
-        });
+      this.editarProduto();
     } else {
-      console.log(this.produto);
-      this.produtoService.salvar(this.produto).subscribe();
-     // this.messageService.add({
-     //   severity: 'success',
-      //  detail: 'Produto salvo com sucesso!',
-     // });
+      this.salvarNovoProduto();
     }
     form.reset();
     this.router.navigate(['/produtos']);
-
-
   }
-  showMarca() {}
-  showSubgrupo() {}
+  showMarca() { }
+  showSubgrupo() { }
   upLoad() {
     let input = document.createElement('input');
     input.type = 'file';
@@ -136,5 +123,43 @@ console.log(this.produto.id )
       ///  this.url = '/assets/no-image-icon.jpg';
     }
     return this.url;
+  }
+  private editarProduto() {
+    this.produtoService
+      .editar(this.produto)
+      .pipe(
+        catchError((erro: any) => {
+          return throwError(() => this.errorHandler.erroHandler(erro));
+        })
+      ).subscribe((response: HttpResponse<any>) => {
+        const statusCode = response.status;
+        if (statusCode === 200) {
+          this.mostrarMensagem('Produto editado com sucesso!', 'info');
+        }
+
+      });
+
+  }
+  private salvarNovoProduto() {
+    this.produtoService.salvar(this.produto).pipe(
+      catchError((erro: any) => {
+        return throwError(() => this.errorHandler.erroHandler(erro));
+      })
+    ).subscribe();
+    this.mostrarMensagem('Produto salvo com sucesso!', 'success');
+  }
+
+  private mostrarMensagem(mensagem: string, severidade: string) {
+
+    this.messageService.add({ severity: severidade, detail: mensagem });
+  }
+  gerarEan13( ){
+   this.gerarEa13Service.GerarEn13().subscribe((codigoean: any) => {
+    console.log(codigoean.codigoEan13 + 'meu codigo');
+   this.produtoDetalhe.codigobarras= codigoean.codigoEan13;
+  });
+  }
+  addProdutoDetalhe(){
+    this.produto.produtoDetalhe.push(this.produtoDetalhe)
   }
 }

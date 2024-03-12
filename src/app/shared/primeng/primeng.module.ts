@@ -13,6 +13,10 @@ import { DividerModule } from 'primeng/divider';
 import { TagModule } from 'primeng/tag';
 import { InputNumberModule } from 'primeng/inputnumber';
 import {DropdownModule} from 'primeng/dropdown';
+import {MessageModule} from 'primeng/message';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import {DialogService, DynamicDialogConfig, DynamicDialogModule} from 'primeng/dynamicdialog';
+import {ToastModule} from 'primeng/toast';
 @NgModule({
   declarations: [],
   imports: [
@@ -31,8 +35,11 @@ import {DropdownModule} from 'primeng/dropdown';
     DividerModule,
     TagModule,
     InputNumberModule,
-    DropdownModule
+    DropdownModule,
+    MessageModule,
+    ToastModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+  providers:[MessageService, ConfirmationService, DialogService,DynamicDialogConfig]
 })
 export class PrimengModule { }
