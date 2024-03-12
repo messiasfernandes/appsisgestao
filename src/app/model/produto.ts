@@ -13,7 +13,9 @@ export class Produto {
   estoque?: Estoque = new Estoque()
   marca: Marca = new Marca()
   preco: Preco = new Preco()
-  tipoProduto!: TipoProduto
+  codigoFabricante: string
+
+  tipoProduto : TipoProduto
   subgrupo: Subgrupo =new Subgrupo()
   produtoDetalhe?: Produtodetalhe [] = []
 }

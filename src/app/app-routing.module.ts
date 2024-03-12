@@ -5,16 +5,17 @@ import { ProdutocadastroComponent } from './produto/produtocadastro/produtocadas
 
 const routes: Routes = [
   {
-    path:'produtos', component: ProdutolistaComponent,
-
+    path: 'produtos',
+    component: ProdutolistaComponent,
   },
   {
-    path:'produtos/novo', component : ProdutocadastroComponent
-  }
+    path: 'produtos/novo',
+    component: ProdutocadastroComponent,
+  },
+  { path: 'produtos/:id', component: ProdutocadastroComponent },
 ];
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
