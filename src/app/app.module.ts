@@ -15,6 +15,9 @@ import { registerLocaleData } from '@angular/common';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ProdutocadastroComponent } from './produto/produtocadastro/produtocadastro.component';
 import { MessageService } from 'primeng/api';
+import { FormdialogmarcaComponent } from './dialogs/formdialogmarca/formdialogmarca.component';
+import { FormdialogsubgrupoComponent } from './dialogs/formdialogsubgrupo/formdialogsubgrupo.component';
+import { FormcadastromarcadialogComponent } from './dialogs/formcadastromarcadialog/formcadastromarcadialog.component';
 
 registerLocaleData(localePt, 'pt-BR');
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -26,6 +29,9 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     MenuLateralComponent,
     ProdutolistaComponent,
     ProdutocadastroComponent,
+    FormdialogmarcaComponent,
+    FormdialogsubgrupoComponent,
+    FormcadastromarcadialogComponent,
 
   ],
   imports: [

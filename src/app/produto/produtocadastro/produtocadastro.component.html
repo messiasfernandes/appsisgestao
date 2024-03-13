@@ -101,7 +101,7 @@
 
                     <label for="codigofabricante">Codigo Barras</label>
                   </span>
-                  <button pButton class="p-button-lg p-button-info p-button-outlined" type="button"
+                  <button pButton class="p-button-lg p-button-help p-button-outlined" type="button"
                     icon="fa-solid fa-barcode fa-lg" pTooltip="Gerar Ena13" (click)="gerarEan13()"></button>
                 </div>
               </div>
@@ -168,7 +168,7 @@
                     <th style="text-align: center;">Ações</th>
                   </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-produtodetalhado>
+                <ng-template pTemplate="body" let-produtodetalhado let-rowIndex="rowIndex">
                   <tr [pSelectableRow]="produtodetalhado">
 
                     <td>{{produtodetalhado.codigobarras}}</td>
@@ -186,7 +186,7 @@
                             [routerLink]="['/produtos', produto.id]" class="p-button-primary mr-2 p-button-text"
                             type="button"></button>
                         </a>
-                        <button pButton pRipple icon="fa-solid fa-trash" type="button" pTooltip="Excluir"
+                        <button pButton pRipple icon="fa-solid fa-circle-minus" type="button" pTooltip="remover " (click)="removerLinha(rowIndex)"
                           tooltipPosition="top" class=" p-button-danger mr2 p-button-text "></button>
                       </div>
 

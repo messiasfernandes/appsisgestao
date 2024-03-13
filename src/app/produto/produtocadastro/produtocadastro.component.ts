@@ -15,6 +15,7 @@ import { throwError } from 'rxjs/internal/observable/throwError';
 import { catchError } from 'rxjs/internal/operators/catchError';
 import { GeradoreanService } from 'src/app/services/geradorean.service';
 import { Unidademedida } from 'src/app/enumerado/unidademedida';
+import { FormdialogService } from 'src/app/services/formdialog.service';
 
 @Component({
   selector: 'app-produtocadastro',
@@ -28,9 +29,9 @@ export class ProdutocadastroComponent implements OnInit {
   valoresEnum = Object.values(TipoProduto);
   pictureImageTxt = 'Escolha uma imagem';
   url: string = '';
-  produtoDetalhe= new Produtodetalhe()
+  produtoDetalhe = new Produtodetalhe()
   tipoproduto: SelectItem[] = [];
-  unidadmedidas : SelectItem[] = [];
+  unidadmedidas: SelectItem[] = [];
   constructor(
     private fotoProdutoService: FotoProdutoService,
     private produtoService: ProdutoService,
@@ -38,7 +39,8 @@ export class ProdutocadastroComponent implements OnInit {
     private idParametro: ActivatedRoute,
     private messageService: MessageService,
     private router: Router,
-    private gerarEa13Service :GeradoreanService
+    private formDialog: FormdialogService,
+    private gerarEa13Service: GeradoreanService
   ) {
     this.tipoproduto = Object.keys(TipoProduto).map((key) => ({
       label: TipoProduto[key],
@@ -78,6 +80,8 @@ export class ProdutocadastroComponent implements OnInit {
   }
 
   salvar(form: NgForm) {
+    this.produto.marca = this.marca
+    this.produto.subgrupo= this.subgrupo
     if (this.produto.id != null) {
       this.editarProduto();
     } else {
@@ -86,8 +90,30 @@ export class ProdutocadastroComponent implements OnInit {
     form.reset();
     this.router.navigate(['/produtos']);
   }
-  showMarca() { }
-  showSubgrupo() { }
+  removerLinha(index: number) {
+    this.produto.produtoDetalhe.splice(index, 1);
+  }
+
+  async showMarca() {
+    try {
+      this.marca = await this.formDialog.openMarcaProdutoDiagoialog();
+      console.log('Subgrupo Selecionado:', this.marca);
+      // Agora você pode usar o subgrupoSelecionado como necessário.
+    } catch (error) {
+      console.log('Operação cancelada ou ocorreu um erro.');
+    }
+
+  }
+  async showSubgrupo() {
+    try {
+      this.subgrupo = await this.formDialog.openSubgrupoDialog();
+      console.log('Subgrupo Selecionado:', this.subgrupo);
+      // Agora você pode usar o subgrupoSelecionado como necessário.
+    } catch (error) {
+      console.log('Operação cancelada ou ocorreu um erro.');
+    }
+  }
+
   upLoad() {
     let input = document.createElement('input');
     input.type = 'file';
@@ -153,14 +179,14 @@ export class ProdutocadastroComponent implements OnInit {
 
     this.messageService.add({ severity: severidade, detail: mensagem });
   }
-  gerarEan13( ){
-   this.gerarEa13Service.GerarEn13().subscribe((codigoean: any) => {
-    console.log(codigoean.codigoEan13 + 'meu codigo');
-   this.produtoDetalhe.codigobarras= codigoean.codigoEan13;
-  });
+  gerarEan13() {
+    this.gerarEa13Service.GerarEn13().subscribe((codigoean: any) => {
+      console.log(codigoean.codigoEan13 + 'meu codigo');
+      this.produtoDetalhe.codigobarras = codigoean.codigoEan13;
+    });
   }
-  addProdutoDetalhe(){
+  addProdutoDetalhe() {
     this.produto.produtoDetalhe.push(this.produtoDetalhe)
-    this.produtoDetalhe= new Produtodetalhe()
+    this.produtoDetalhe = new Produtodetalhe()
   }
 }
