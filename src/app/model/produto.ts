@@ -10,12 +10,12 @@ export class Produto {
   nome?: string
   descricao?: string
   imagem?: string
-  estoque?: Estoque = new Estoque()
-  marca: Marca = new Marca()
+  estoque?: Estoque
+  marca: Marca
   preco: Preco = new Preco()
   codigoFabricante: string
 
   tipoProduto : TipoProduto
-  subgrupo: Subgrupo =new Subgrupo()
+  subgrupo: Subgrupo
   produtoDetalhe?: Produtodetalhe [] = []
 }

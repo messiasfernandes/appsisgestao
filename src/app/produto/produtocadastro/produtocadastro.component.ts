@@ -161,5 +161,6 @@ export class ProdutocadastroComponent implements OnInit {
   }
   addProdutoDetalhe(){
     this.produto.produtoDetalhe.push(this.produtoDetalhe)
+    this.produtoDetalhe= new Produtodetalhe()
   }
 }
