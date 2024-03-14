@@ -1,4 +1,14 @@
 <p-toast></p-toast>
+<p-confirmDialog header="Confirmação" icon= "pi pi-question-circle" #confirmacao  [style]="{width: '20vw'}">
+  <p-footer>
+    <button type="button" pButton icon="pi pi-check" label="Sim" class="p-button-danger"
+      (click)="confirmacao.accept()"></button>
+    <button type="button" pButton icon="pi pi-times" class="p-button-success"  label="Não"
+      (click)="confirmacao.reject()"></button>
+  </p-footer>
+</p-confirmDialog>
+    <router-outlet></router-outlet>
+
   <app-menu-lateral></app-menu-lateral>
   <router-outlet ></router-outlet>
 

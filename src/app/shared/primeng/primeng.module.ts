@@ -15,8 +15,10 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import {DropdownModule} from 'primeng/dropdown';
 import {MessageModule} from 'primeng/message';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import {DialogService, DynamicDialogConfig, DynamicDialogModule} from 'primeng/dynamicdialog';
+import {DialogService, DynamicDialogConfig} from 'primeng/dynamicdialog';
 import {ToastModule} from 'primeng/toast';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+
 @NgModule({
   declarations: [],
   imports: [
@@ -37,7 +39,8 @@ import {ToastModule} from 'primeng/toast';
     InputNumberModule,
     DropdownModule,
     MessageModule,
-    ToastModule
+    ToastModule,
+    ConfirmDialogModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers:[MessageService, ConfirmationService, DialogService,DynamicDialogConfig]

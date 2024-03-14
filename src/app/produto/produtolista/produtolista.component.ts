@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
-import { LazyLoadEvent } from 'primeng/api';
+import { ErrohandlerService } from './../../services/errohandler.service';
+import { Component, ViewChild } from '@angular/core';
+import { ConfirmationService, LazyLoadEvent, MessageService } from 'primeng/api';
+import { throwError } from 'rxjs/internal/observable/throwError';
+import { catchError } from 'rxjs/internal/operators/catchError';
 import { Filtro } from 'src/app/model/filtro';
 import { ProdutoService } from 'src/app/services/produto.service';
 
@@ -8,32 +11,58 @@ import { ProdutoService } from 'src/app/services/produto.service';
   templateUrl: './produtolista.component.html',
   styleUrls: ['./produtolista.component.css']
 })
-export class ProdutolistaComponent  {
+export class ProdutolistaComponent {
   produtofiltro = new Filtro()
-  produtos : any[] = [];
+  produtos: any[] = [];
   totalRegistros = 0;
 
 
-constructor( private produtoService : ProdutoService) { }
+  @ViewChild('tabela') grid: any;
+  constructor(private produtoService: ProdutoService,
+    private erroService: ErrohandlerService,
+    private confirmacao: ConfirmationService,
+    private messageService: MessageService) { }
 
-buscar(pagina: number = 0): void {
-  this.produtofiltro.pagina = pagina;
+  buscar(pagina: number = 0): void {
+    this.produtofiltro.pagina = pagina;
 
-  this.produtoService.pesquisar(this.produtofiltro)
-    .then((dados: any) => {
-      this.produtos = dados.produtosreposta;
-      console.log(this.produtos)
-      this.totalRegistros = dados.total;
+    this.produtoService.pesquisar(this.produtofiltro)
+      .then((dados: any) => {
+        this.produtos = dados.produtosreposta;
+        console.log(this.produtos)
+        this.totalRegistros = dados.total;
 
-    });
-}
+      });
+  }
 
-aoMudarPagina(event: LazyLoadEvent) {
+  aoMudarPagina(event: LazyLoadEvent) {
     const pagina = event!.first! / event!.rows!;
     this.buscar(pagina);
-}
-
-
+  }
+  excluir(produto: any) {
+    this.produtoService.excluir(produto.id)
+      .pipe(
+        catchError((erro: any) => {
+          return throwError(() => this.erroService.erroHandler(erro));
+        })
+      )
+      .subscribe(() => {
+        this.buscar();
+        this.grid.first = 0;
+        this.messageService.add({
+          severity: 'success',
+          detail: ' Excluida com sucesso!',
+        });
+      });
+  }
+  confirmarExclusao(produto: any) {
+    this.confirmacao.confirm({
+      message: 'Tem certeza que deseja excluir?',
+      accept: () => {
+        this.excluir(produto);
+      },
+    });
+  }
 }
 
 

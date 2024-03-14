@@ -23,7 +23,7 @@
         </form>
       </div>
       <div class="col-12 md:col-6 lg:col-2 p-fluid">
-        <button pButton icon="pi pi-plus-circle" type="button" pTooltip="Adicionar Produto" label="novo"
+        <button pButton icon="fa-solid fa-circle-plus " type="button" pTooltip="Adicionar Produto" label="novo"
           routerLink="/produtos/novo" routerLinkActive="active-link" class="p-button-success p-button-lg"></button>
       </div>
 
@@ -32,7 +32,7 @@
     <div class="grid">
       <div class="col-12">
         <p-table [value]="produtos" [paginator]="true" selectionMode="single" [rowHover]="true"
-          [rows]="produtofiltro.itensPorPagina" responsiveLayout="stack"
+          [rows]="produtofiltro.itensPorPagina" responsiveLayout="stack"  #tabela
           styleClass="p-datatable-gridlines p-datatable-sm p-datatable-customer" dataKey="id" [lazy]="true"
           (onLazyLoad)="aoMudarPagina($event)"  [totalRecords]="totalRegistros"
           >
@@ -76,7 +76,7 @@
                     [routerLink]="['/produtos', produto.id]" class="p-button-primary mr-2 p-button-text"
                       type="button"></button>
                   </a>
-                  <button pButton pRipple icon="fa-solid fa-trash" type="button" pTooltip="Excluir"
+                  <button pButton pRipple icon="fa-solid fa-trash" type="button" pTooltip="Excluir"  (click)="confirmarExclusao(produto)"
                     tooltipPosition="top" class=" p-button-danger mr2 p-button-text "></button>
                 </div>
 

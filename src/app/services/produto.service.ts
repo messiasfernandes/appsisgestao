@@ -64,4 +64,7 @@ export class ProdutoService {
       { headers, observe: 'response' }
     );
   }
+  excluir(id: number): Observable<any> {
+    return this.http.delete(`${config.baseurl}produtos/${id}`);
+  }
 }
