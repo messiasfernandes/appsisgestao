@@ -1,6 +1,6 @@
 import { Unidademedida } from "../enumerado/unidademedida"
 
-export class Produtodetalhe {
+export class ProdutoDetalhe {
   id?: number
   codigobarras?: string
   desconto?: number

@@ -1,4 +1,4 @@
-import { Produtodetalhe } from './../../model/produtodetalhe';
+import { ProdutoDetalhe } from './../../model/produtodetalhe';
 import { ErrohandlerService } from './../../services/errohandler.service';
 import { FotoProdutoService } from './../../services/fotoproduto.service';
 import { Marca } from './../../model/marca';
@@ -25,11 +25,12 @@ import { FormdialogService } from 'src/app/services/formdialog.service';
 export class ProdutocadastroComponent implements OnInit {
   produto = new Produto();
   marca = new Marca();
+  bloqueiaboatao = false;
   subgrupo = new Subgrupo();
   valoresEnum = Object.values(TipoProduto);
   pictureImageTxt = 'Escolha uma imagem';
   url: string = '';
-  produtoDetalhe = new Produtodetalhe()
+  produtoDetalhe = new ProdutoDetalhe()
   tipoproduto: SelectItem[] = [];
   unidadmedidas: SelectItem[] = [];
   constructor(
@@ -186,7 +187,17 @@ export class ProdutocadastroComponent implements OnInit {
     });
   }
   addProdutoDetalhe() {
-    this.produto.produtoDetalhe.push(this.produtoDetalhe)
-    this.produtoDetalhe = new Produtodetalhe()
+    if (this.produtoDetalhe.codigobarras.length <= 0) {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'campo nao ser vazio'
+      });
+    } else {
+      this.produto.produtoDetalhe.push(this.produtoDetalhe)
+      this.produtoDetalhe = new ProdutoDetalhe()
+
+    }
+
   }
 }

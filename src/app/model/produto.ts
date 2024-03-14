@@ -2,7 +2,7 @@ import { Estoque } from "./estoque"
 import { Marca } from "./marca"
 import { Preco } from "./preco"
 import { Subgrupo } from "./subgrupo"
-import { Produtodetalhe } from "./produtodetalhe"
+import { ProdutoDetalhe } from "./produtodetalhe"
 import { TipoProduto } from "../enumerado/tipoproduto"
 
 export class Produto {
@@ -17,5 +17,5 @@ export class Produto {
 
   tipoProduto : TipoProduto
   subgrupo: Subgrupo
-  produtoDetalhe?: Produtodetalhe [] = []
+  produtoDetalhe?: ProdutoDetalhe [] = []
 }
