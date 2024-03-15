@@ -9,23 +9,24 @@
 
 
   <div class="p-fluid grid">
-    <div class="col-7 md:col-6 lg:col-6 p-fluid">
+    <div class="col-12 md:col-6 lg:col-6 p-fluid">
       <form autocomplete="off" (ngSubmit)="buscar()">
-
+        <div class="p-inputgroup">
         <span class="p-float-label ">
-          <span class="p-float-label p-input-icon-right">
-            <i class="pi pi-search"></i>
+
             <input type="text" id="inputgroup" name="paramentro" pInputText [(ngModel)]="marcafiltro.parametro"
-              class="p-inputtext" placeholder="id, subgrupos">
+              class="p-inputtext" placeholder="id, marca">
             <label for="inputgroup">Pesquisar</label>
 
-          </span>
-        </span>
 
+        </span>
+        <button type="button" (click)="buscar()" pButton icon="fa-solid fa-search" class=" p-button-lg"
+        styleClass="p-button-warn"></button>
+      </div>
       </form>
 
     </div>
-    <div class="col-5 md:col-6 lg:col-2 p-fluid">
+    <div class="col-12 md:col-6 lg:col-2 p-fluid">
       <button pButton icon="pi pi-plus" pTooltip="Adicionar Marca" label="novo" (click)="showMarca()"
         class="p-button-success p-button-lg"></button>
     </div>
@@ -67,7 +68,7 @@
                   (click)="selecionarMarca(marca)" class="p-button-info mr-2  ">
                 </button>
               </a>
-              <button pButton pRipple icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top" (click)="editaMarca(marca)"
+              <button pButton pRipple icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"
                 class="p-button-primary mr-2" type="button"></button>
 
               <button pButton pRipple icon="pi pi-trash" type="button" pTooltip="Excluir" tooltipPosition="top"
