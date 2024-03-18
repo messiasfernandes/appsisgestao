@@ -1,3 +1,4 @@
+import { Componente } from './componente';
 import { Estoque } from "./estoque"
 import { Marca } from "./marca"
 import { Preco } from "./preco"
@@ -18,4 +19,5 @@ export class Produto {
   tipoProduto : TipoProduto
   subgrupo: Subgrupo
   produtoDetalhe?: ProdutoDetalhe [] = []
+  componentes : Componente []=[]
 }
