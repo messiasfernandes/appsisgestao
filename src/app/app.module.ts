@@ -18,6 +18,7 @@ import { MessageService } from 'primeng/api';
 import { FormdialogmarcaComponent } from './dialogs/formdialogmarca/formdialogmarca.component';
 import { FormdialogsubgrupoComponent } from './dialogs/formdialogsubgrupo/formdialogsubgrupo.component';
 import { FormcadastromarcadialogComponent } from './dialogs/formcadastromarcadialog/formcadastromarcadialog.component';
+import { ListadialogprodutoComponent } from './dialogs/listadialogproduto/listadialogproduto.component';
 
 registerLocaleData(localePt, 'pt-BR');
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -32,6 +33,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     FormdialogmarcaComponent,
     FormdialogsubgrupoComponent,
     FormcadastromarcadialogComponent,
+    ListadialogprodutoComponent,
 
   ],
   imports: [

@@ -5,6 +5,9 @@ import { Marca } from '../model/marca';
 import { FormdialogmarcaComponent } from '../dialogs/formdialogmarca/formdialogmarca.component';
 import { Subgrupo } from '../model/subgrupo';
 import { FormdialogsubgrupoComponent } from '../dialogs/formdialogsubgrupo/formdialogsubgrupo.component';
+import { Produto } from '../model/produto';
+import { ListadialogprodutoComponent } from '../dialogs/listadialogproduto/listadialogproduto.component';
+import { Componente } from '../model/componente';
 
 @Injectable({
   providedIn: 'root'
@@ -109,4 +112,25 @@ export class FormdialogService {
 
       });
      }
+     showdialog(componente: Componente) {
+      this.ref = this.dialogService.open(ListadialogprodutoComponent, {
+        header: 'Lista de Produtos',
+        width: '95%', modal:true,
+
+        styleClass: "{'960px': '70vw'}",
+        contentStyle: { 'max-height': '1000px', overflow: 'auto' },
+
+        resizable: false,
+
+        baseZIndex: 10000,
+        // style:"width:55vw!important; height:70% !important; top:25% !important; left: 30% !important;"
+      });
+      this.ref.onClose.subscribe((produto: Produto) => {
+        if (produto) {
+          componente.produto = produto;
+
+          // this.bloqueiaboatao = true;
+        }
+      });
+    }
 }

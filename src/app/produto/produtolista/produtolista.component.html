@@ -1,3 +1,4 @@
+
 <div class="container">
   <p-card header="Lista de Produtos">
 
@@ -55,10 +56,10 @@
           <ng-template pTemplate="body" let-produto>
             <tr [pSelectableRow]="produto">
               <td>{{produto.id}}</td>
-              <td>{{produto.produto}}</td>
-              <td> {{produto.marca}}</td>
-              <td style="text-align: center;">{{produto.subgrupo }}</td>
-              <td style="text-align: right;">{{produto.precovenda| currency: 'BRL' }}</td>
+              <td>{{produto.nome}}</td>
+              <td> {{produto.marca.nomeMarca}}</td>
+              <td style="text-align: center;">{{produto.subgrupo.nomeSubgrupo }}</td>
+              <td style="text-align: right;">{{produto.preco.precovenda| currency: 'BRL' }}</td>
               <td style="text-align: center;">
 
                 <span [style.color]="produto.situacao === 'Disponvel' ? 'blue' : 'red'">{{ produto.situacao

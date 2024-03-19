@@ -23,22 +23,27 @@ export class ProdutolistaComponent {
     private confirmacao: ConfirmationService,
     private messageService: MessageService) { }
 
-  buscar(pagina: number = 0): void {
-    this.produtofiltro.pagina = pagina;
+    buscar(pagina: number= 0):void{
+      this.produtofiltro.pagina = pagina;
+      this.produtoService
+        .pesquisar(this.produtofiltro)
+        .pipe(
+          catchError((erro: any) => {
+            return throwError(() => this.erroService.erroHandler(erro));
+          })
+        )
+        .subscribe((dados: any) => {
+          console.log(dados.content);
+          this.produtos = dados.content;
 
-    this.produtoService.pesquisar(this.produtofiltro)
-      .then((dados: any) => {
-        this.produtos = dados.produtosreposta;
+          this.totalRegistros = dados.totalElements;
+        });
         console.log(this.produtos)
-        this.totalRegistros = dados.total;
-
-      });
-  }
-
-  aoMudarPagina(event: LazyLoadEvent) {
-    const pagina = event!.first! / event!.rows!;
-    this.buscar(pagina);
-  }
+     }
+     aoMudarPagina(event: LazyLoadEvent) {
+      const pagina = event!.first! / event!.rows!;
+      this.buscar(pagina);
+    }
   excluir(produto: any) {
     this.produtoService.excluir(produto.id)
       .pipe(

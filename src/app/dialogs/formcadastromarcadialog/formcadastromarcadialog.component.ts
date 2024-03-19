@@ -75,4 +75,5 @@ export class FormcadastromarcadialogComponent {
    selecionarMarca() {
     this.ref.close(this.marca);
   }
+
 }

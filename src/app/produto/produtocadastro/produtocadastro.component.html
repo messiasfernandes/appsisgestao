@@ -2,10 +2,10 @@
 
 
 
-  <p-card header="Cadastro de Produtos" subheader="Card Subheader">
+  <p-card header="Cadastro de Produtos" >
     <div class="card">
-
-
+      <p-tabView>
+        <p-tabPanel header="Produto">
       <form #f="ngForm" autocomplete="off" (ngSubmit)="salvar(f)">
         <div class="grid nested-grid">
 
@@ -208,8 +208,90 @@
           </div>
         </div>
       </form>
+        </p-tabPanel>
+        <p-tabPanel header="Kit/Combo">
+          <div class="p-fluid grid">
+          <div class="col-12 md:col-6 lg:col-5 p-fluid">
+            <span class="p-float-label">
+              <input type="text" id="produtonome" required="true" name="nome" pInputText
+                [(ngModel)]="componente.produto.nome" [readOnly]="true" ngModel #nome="ngModel" />
 
+              <label for="produtonome">Nome Componente</label>
+            </span>
+          </div>
+          <div class="col-5 md:col-6 lg:col-2 p-fluid">
+            <button pButton icon="pi pi-plus" pTooltip="Adicoinar Componete" label="Produtos"
+              (click)="showLIstaProduto()" class="p-button-info p-button-lg"></button>
+          </div>
+          <div class="col-12 md:col-6 lg:col-2 p-fluid">
+            <span class="p-float-label">
+              <p-inputNumber inputId="preco_venda" currency="BRL" mode="currency" name="precovenda" locale="pt-Br"
+                [(ngModel)]="componente.produto.preco.precovenda" [readonly]="true" [minFractionDigits]="2"></p-inputNumber>
+              <label for="preco_venda"> Preço Venda</label>
+            </span>
+          </div>
+          <div class="col-12 md:col-6 lg:col-2 p-fluid">
+            <span class="p-float-label">
+              <p-inputNumber inputId="qtde" mode="decimal" name="qtde" locale="pt-Br" [(ngModel)]="componente.qtde"
+                [minFractionDigits]="3"></p-inputNumber>
+              <label for="qtde"> Quantidade</label>
+            </span>
+          </div>
+
+          <div class="col-5 md:col-6 lg:col-1 p-fluid">
+            <button pButton icon="pi pi-plus" pTooltip="Adicoinar Componente" [disabled]="!bloqueiaboatao"
+              (click)="addComponete()" class="p.p-button-success p-button-lg"></button>
+          </div>
+
+        </div>
+        <div class="grid">
+          <div class="col-12 tabela">
+            <p-table [value]="produto.componentes" responsiveLayout="stack" selectionMode="single" [rowHover]="true"
+              #tabela dataKey="produto.componentes.produto.id"
+              styleClass="p-datatable-gridlines p-datatable-sm p-datatable-customer" [lazy]="true">
+              <ng-template pTemplate="caption"> </ng-template>
+              <ng-template pTemplate="header">
+                <tr>
+                  <th>Código</th>
+                  <th>Nome Produto</th>
+                  <th style="text-align: center">Quantidade</th>
+                  <th style="text-align: right">Preço Venda</th>
+                  <th style="text-align: right">Subtotal</th>
+
+
+                  <th style="text-align: center">Opções</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-componente key let-rowIndex="rowIndex">
+                <tr [pSelectableRow]="componente">
+                  <td>{{ componente.produto.id }}</td>
+                  <td>{{ componente.produto.nome }}</td>
+                  <td style="text-align: center">{{ componente.qtde }}</td>
+                  <td style="text-align: right">
+                    {{ componente.produto.preco.precovenda | currency:'BRL' }}
+                  </td>
+                  <td style="text-align: right">
+                    {{ componente.subtotal | currency :'BRL'}}
+                  </td>
+
+
+                  <td>
+                    <div class="flex align-items-center justify-content-center">
+                      <a>
+                        <button pButton pRipple icon="pi pi-minus" pTooltip="Editar" tooltipPosition="top"
+                          class="p-button-danger -button-s mr-2" (click)="removerCompnente(rowIndex)"
+                          type="button"></button>
+                      </a>
+                    </div>
+                  </td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+        </div>
+
+        </p-tabPanel>
+      </p-tabView>
     </div>
-
   </p-card>
 </div>

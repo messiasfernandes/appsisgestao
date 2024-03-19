@@ -5,6 +5,7 @@ import { Filtro } from '../model/filtro';
 import { config } from '../config/ini';
 import { Observable } from 'rxjs';
 import { Produto } from '../model/produto';
+import { Componente } from '../model/componente';
 
 @Injectable({
   providedIn: 'root'
@@ -13,29 +14,25 @@ export class ProdutoService {
 
   constructor(private http: HttpClient) { }
 
-  pesquisar(filtro: Filtro): Promise<any> {
-    const headers = new HttpHeaders()
-      .append('Content-Type', 'application/json');
+
+  pesquisar(filtro: Filtro): Observable<Produto> {
+    const headers = new HttpHeaders().append(
+      'Content-Type',
+      'application/json'
+    );
     let params = new HttpParams()
       .set('page', filtro.pagina.toString())
-      .set('size', filtro.itensPorPagina.toString())
-
+      .set('size', filtro.itensPorPagina.toString());
 
     if (filtro.parametro) {
       params = params.set('parametro', filtro.parametro);
     }
-    return this.http
-      .get<any>(`${config.baseurl}produtos?`, { headers, params })
-      .toPromise()
-      .then((response: any) => {
-        var produtosreposta = response.content;
-        const resultado = {
-          produtosreposta,
-          total: response['totalElements'],
-        };
-
-        return resultado;
-      });
+    const response = this.http.get<Produto>(`${config.baseurl}produtos`, {
+      headers,
+      params,
+    });
+console.log(response)
+    return response;
   }
   detalhar(id: number): Observable<Produto> {
     return this.http.get<Produto>(`${config.baseurl}produtos/${id}`);
@@ -66,5 +63,47 @@ export class ProdutoService {
   }
   excluir(id: number): Observable<any> {
     return this.http.delete(`${config.baseurl}produtos/${id}`);
+  }
+  adiCionarComponente(produto: Produto, componente: Componente) {
+   produto.preco.customedio = this.converterNaN(produto.preco.customedio);
+    produto.preco.precocusto = this.converterNaN(produto.preco.precocusto);
+    produto.preco.precovenda = this.converterNaN(produto.preco.precovenda);
+    componente.subtotal = componente.qtde * componente.produto.preco.precovenda;
+    console.log(componente.subtotal);
+    produto.preco.precovenda += componente.subtotal; //componente.produto.precovenda * componente.qtde;
+    produto.preco.precocusto += componente.produto.preco.precocusto * componente.qtde;
+    produto.preco.customedio += componente.produto.preco.customedio * componente.qtde;
+
+    // this.produto.componentes.push(this.componente)
+    return componente;
+  }
+  converterNaN(valor: number) {
+    console.log(valor);
+    return isNaN(valor) ? 0 : valor;
+  }
+  removerComponente(index: number, produto: Produto) {
+    produto.preco.customedio = this.converterNaN(produto.preco.customedio);
+    produto.preco.precocusto = this.converterNaN(produto.preco.precocusto);
+    produto.preco.precovenda = this.converterNaN(produto.preco.precovenda);
+    console.log(
+      produto.componentes[index].produto.preco.precovenda *
+        produto.componentes[index].qtde
+    );
+    produto.preco.precovenda -=
+      produto.componentes[index].produto.preco.precovenda *
+      produto.componentes[index].qtde;
+
+    produto.preco.precocusto -=
+      produto.componentes[index].produto.preco.precocusto *
+      produto.componentes[index].qtde;
+
+    produto.preco.customedio -=
+      produto.componentes[index].produto.preco.customedio *
+      produto.componentes[index].qtde;
+
+    produto.preco.customedio = this.converterNaN(produto.preco.customedio);
+    produto.preco.precocusto = this.converterNaN(produto.preco.precocusto);
+    produto.preco.precovenda = this.converterNaN(produto.preco.precovenda);
+    return produto;
   }
 }

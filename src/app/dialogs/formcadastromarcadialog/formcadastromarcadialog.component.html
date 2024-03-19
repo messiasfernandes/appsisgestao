@@ -2,39 +2,39 @@
   <br>
   <div class="card">
     <form #f="ngForm" autocomplete="off" (ngSubmit)="salvar(f)">
-  <div class="grid p-fluid p-formgroup-inline">
+      <div class="grid p-fluid p-formgroup-inline">
 
 
-      <p></p>
+        <p></p>
 
 
 
 
-   <div class="col-12 md:col-6 lg:col-12 p-fluid">
-    <span class="p-float-label">
-      <input type="text" id="subcat" pInputText name="nomeMarca" required="true" ngModel #nomeMarca="ngModel"
-        [(ngModel)]="marca.nomeMarca" />
+        <div class="col-12 md:col-6 lg:col-12 p-fluid">
+          <span class="p-float-label">
+            <input type="text" id="subcat" pInputText name="nomeMarca" required="true" ngModel #nomeMarca="ngModel"
+              [(ngModel)]="marca.nomeMarca" />
 
-      <label for="subcat">Marca</label>
+            <label for="subcat">Marca</label>
 
-    </span>
-   </div>
+          </span>
+
+        </div>
+
+        <div class="col-6 md:col-6 lg:col-3 p-fluid">
+
+          <button pButton pRipple type="button" icon="pi pi-sign-in" label="Voltar" (click)="selecionarMarca()"
+            class="p-button-outlined p-button-lg p-button-danger"></button>
+        </div>
+        <div class="col-6 md:col-6 lg:col-3 p-fluid">
+          <button pButton pRipple type="submit" [disabled]="!f.valid" class="p-button-lg p-button-success"
+            icon="pi pi-save" label="Salvar"></button>
 
 
-   <div class="col-6 md:col-6 lg:col-3 p-fluid">
+        </div>
 
-    <button pButton pRipple type="button" icon="pi pi-sign-in" label="Voltar" (click)="selecionarMarca()"
-      class="p-button-outlined p-button-lg p-button-danger"></button>
+
+      </div>
+    </form>
   </div>
-  <div class="col-6 md:col-6 lg:col-3 p-fluid">
-    <button pButton pRipple type="submit"  [disabled]="!f.valid" class="p-button-lg p-button-success"
-      icon="pi pi-save" label="Salvar"></button>
-
-
-  </div>
-
-
-  </div>
-</form>
-   </div>
 </div>

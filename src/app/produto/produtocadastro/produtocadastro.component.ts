@@ -1,3 +1,4 @@
+import { DialogService } from 'primeng/dynamicdialog';
 import { ProdutoDetalhe } from './../../model/produtodetalhe';
 import { ErrohandlerService } from './../../services/errohandler.service';
 import { FotoProdutoService } from './../../services/fotoproduto.service';
@@ -16,6 +17,7 @@ import { catchError } from 'rxjs/internal/operators/catchError';
 import { GeradoreanService } from 'src/app/services/geradorean.service';
 import { Unidademedida } from 'src/app/enumerado/unidademedida';
 import { FormdialogService } from 'src/app/services/formdialog.service';
+import { Componente } from 'src/app/model/componente';
 
 @Component({
   selector: 'app-produtocadastro',
@@ -33,6 +35,7 @@ export class ProdutocadastroComponent implements OnInit {
   produtoDetalhe = new ProdutoDetalhe()
   tipoproduto: SelectItem[] = [];
   unidadmedidas: SelectItem[] = [];
+  componente= new Componente();
   constructor(
     private fotoProdutoService: FotoProdutoService,
     private produtoService: ProdutoService,
@@ -199,5 +202,29 @@ export class ProdutocadastroComponent implements OnInit {
 
     }
 
+  }
+
+  removerCompnente(indice:number){
+
+  }
+  showLIstaProduto(){
+    this.formDialog.showdialog(this.componente)
+    this.bloqueiaboatao = true;
+  }
+
+  addComponete() {
+    if (this.componente.qtde <= 0) {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'qtde não pdoe ser menor que zero ou igual a 0',
+      });
+    } else {
+      this.produto.componentes.push(
+        this.produtoService.adiCionarComponente(this.produto, this.componente)
+      );
+      this.componente = new Componente();
+      this.bloqueiaboatao = false;
+    }
   }
 }
