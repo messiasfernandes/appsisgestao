@@ -59,9 +59,9 @@
 
 
               <td style="text-align: right;">{{produto.preco.precovenda| currency :'BRL'}}</td>
+              <td style="text-align: center;">{{ produto.macar?.nomedaMarca !== null ? produto.marca.nomedaMarca : '' }}</td>
 
-              <td style="text-align: center;">{{produto.marca.nomeMarca}}</td>
-              <td style="text-align: center;">{{produto.subgrupo.nomeSubgrupo}}</td>
+              <td style="text-align: center;">{{produto.subgrupo?.nomeSubgrupo !==null ? produto.subgrupo.nomeSubgrupo :''}}</td>
               <td>
                 <div class="flex flex-wrap align-items-center justify-content-center ">
                   <a>
