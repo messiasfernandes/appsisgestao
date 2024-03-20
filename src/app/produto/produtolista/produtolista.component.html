@@ -57,8 +57,8 @@
             <tr [pSelectableRow]="produto">
               <td>{{produto.id}}</td>
               <td>{{produto.nome}}</td>
-              <td> {{produto.marca.nomeMarca}}</td>
-              <td style="text-align: center;">{{produto.subgrupo.nomeSubgrupo }}</td>
+              <td> {{produto.marca}}</td>
+              <td style="text-align: center;">{{produto.subgrupo }}</td>
               <td style="text-align: right;">{{produto.preco.precovenda| currency: 'BRL' }}</td>
               <td style="text-align: center;">
 

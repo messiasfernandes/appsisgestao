@@ -6,6 +6,7 @@ import { config } from '../config/ini';
 import { Observable } from 'rxjs';
 import { Produto } from '../model/produto';
 import { Componente } from '../model/componente';
+import { Produtocomponte } from '../model/produtocomponte';
 
 @Injectable({
   providedIn: 'root'
@@ -105,5 +106,15 @@ console.log(response)
     produto.preco.precocusto = this.converterNaN(produto.preco.precocusto);
     produto.preco.precovenda = this.converterNaN(produto.preco.precovenda);
     return produto;
+  }
+  removerPropriedades(array: Componente[], props: string[]){
+    array.forEach(obj => {
+      for (let prop of props) {
+        if (obj.produto.hasOwnProperty(prop)) {
+          delete obj.produto[prop as keyof Produtocomponte]; // Usando keyof para garantir a tipagem correta
+        }
+      }
+    });
+
   }
 }

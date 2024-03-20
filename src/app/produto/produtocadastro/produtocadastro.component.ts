@@ -35,7 +35,7 @@ export class ProdutocadastroComponent implements OnInit {
   produtoDetalhe = new ProdutoDetalhe()
   tipoproduto: SelectItem[] = [];
   unidadmedidas: SelectItem[] = [];
-  componente= new Componente();
+  componente = new Componente();
   constructor(
     private fotoProdutoService: FotoProdutoService,
     private produtoService: ProdutoService,
@@ -84,12 +84,19 @@ export class ProdutocadastroComponent implements OnInit {
   }
 
   salvar(form: NgForm) {
+    const propriedadesRemover: string[] = ['marca', 'subgrupo', 'preco', 'situacao', 'nome', 'produtoDetalhe'];
+
+    // Remover propriedades de cada objeto no array
+    this.produtoService.removerPropriedades(this.produto.componentes, propriedadesRemover);
     this.produto.marca = this.marca
-    this.produto.subgrupo= this.subgrupo
+    this.produto.subgrupo = this.subgrupo
     if (this.produto.id != null) {
       this.editarProduto();
     } else {
       this.salvarNovoProduto();
+
+      // Exibir o array após a remoção das propriedades
+      console.log(this.produto.componentes);
     }
     form.reset();
     this.router.navigate(['/produtos']);
@@ -204,10 +211,10 @@ export class ProdutocadastroComponent implements OnInit {
 
   }
 
-  removerCompnente(indice:number){
+  removerCompnente(indice: number) {
 
   }
-  showLIstaProduto(){
+  showLIstaProduto() {
     this.formDialog.showdialog(this.componente)
     this.bloqueiaboatao = true;
   }
@@ -223,6 +230,7 @@ export class ProdutocadastroComponent implements OnInit {
       this.produto.componentes.push(
         this.produtoService.adiCionarComponente(this.produto, this.componente)
       );
+      console.log(this.produto.componentes)
       this.componente = new Componente();
       this.bloqueiaboatao = false;
     }

@@ -8,6 +8,7 @@ import { FormdialogsubgrupoComponent } from '../dialogs/formdialogsubgrupo/formd
 import { Produto } from '../model/produto';
 import { ListadialogprodutoComponent } from '../dialogs/listadialogproduto/listadialogproduto.component';
 import { Componente } from '../model/componente';
+import { Produtocomponte } from '../model/produtocomponte';
 
 @Injectable({
   providedIn: 'root'
@@ -115,7 +116,7 @@ export class FormdialogService {
      showdialog(componente: Componente) {
       this.ref = this.dialogService.open(ListadialogprodutoComponent, {
         header: 'Lista de Produtos',
-        width: '95%', modal:true,
+        width: '60%', modal:true,
 
         styleClass: "{'960px': '70vw'}",
         contentStyle: { 'max-height': '1000px', overflow: 'auto' },
@@ -125,7 +126,7 @@ export class FormdialogService {
         baseZIndex: 10000,
         // style:"width:55vw!important; height:70% !important; top:25% !important; left: 30% !important;"
       });
-      this.ref.onClose.subscribe((produto: Produto) => {
+      this.ref.onClose.subscribe((produto: Produtocomponte) => {
         if (produto) {
           componente.produto = produto;
 
