@@ -233,7 +233,7 @@
           <div class="col-12 md:col-6 lg:col-2 p-fluid">
             <span class="p-float-label">
               <p-inputNumber inputId="qtde" mode="decimal" name="qtde" locale="pt-Br" [(ngModel)]="componente.qtde"
-                [minFractionDigits]="3"></p-inputNumber>
+                [minFractionDigits]="2"></p-inputNumber>
               <label for="qtde"> Quantidade</label>
             </span>
           </div>
@@ -264,7 +264,7 @@
               </ng-template>
               <ng-template pTemplate="body" let-componente key let-rowIndex="rowIndex">
                 <tr [pSelectableRow]="componente">
-                  <td>{{ componente.produto.id }}</td>
+                  <td>{{ componente.id }}</td>
                   <td>{{ componente.produto.nome }}</td>
                   <td style="text-align: center">{{ componente.qtde }}</td>
                   <td style="text-align: right">

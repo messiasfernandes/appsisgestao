@@ -129,7 +129,7 @@ export class FormdialogService {
       this.ref.onClose.subscribe((produto: Produtocomponte) => {
         if (produto) {
           componente.produto = produto;
-
+ console.log(componente.produto)
           // this.bloqueiaboatao = true;
         }
       });
