@@ -4,5 +4,5 @@ import { Produtocomponte } from "./produtocomponte";
 export class Componente {
   qtde: number;
   subtotal: number;
-  produto=new Produtocomponte()
+  produto=new Produto()
 }

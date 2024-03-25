@@ -128,7 +128,9 @@ export class FormdialogService {
       });
       this.ref.onClose.subscribe((produto: Produtocomponte) => {
         if (produto) {
-          componente.produto = produto;
+          componente.produto.id = produto.id;
+          componente.produto.nome= produto.nome;
+          componente.produto.preco=produto.preco
  console.log(componente.produto)
           // this.bloqueiaboatao = true;
         }

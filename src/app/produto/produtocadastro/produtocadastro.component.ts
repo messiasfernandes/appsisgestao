@@ -230,7 +230,7 @@ export class ProdutocadastroComponent implements OnInit {
       this.produto.componentes.push(
         this.produtoService.adiCionarComponente(this.produto, this.componente)
       );
-      console.log(this.produto.componentes)
+      console.log(this.produto)
       this.componente = new Componente();
       this.bloqueiaboatao = false;
     }
