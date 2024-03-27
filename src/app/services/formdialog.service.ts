@@ -126,12 +126,10 @@ export class FormdialogService {
         baseZIndex: 10000,
         // style:"width:55vw!important; height:70% !important; top:25% !important; left: 30% !important;"
       });
-      this.ref.onClose.subscribe((produto: Produtocomponte) => {
+      this.ref.onClose.subscribe((produto: Produto) => {
         if (produto) {
-          componente.produto.id = produto.id;
-          componente.produto.nome= produto.nome;
-          componente.produto.preco=produto.preco
- console.log(componente.produto)
+          componente.produto= produto;
+
           // this.bloqueiaboatao = true;
         }
       });

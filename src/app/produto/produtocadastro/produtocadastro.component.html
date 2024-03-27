@@ -258,12 +258,12 @@
         <div class="grid">
           <div class="col-12 tabela">
             <p-table [value]="produto.componentes" responsiveLayout="stack" selectionMode="single" [rowHover]="true"
-              #tabela dataKey="produto.componentes.produto.id"
+              #tabela dataKey="id"
               styleClass="p-datatable-gridlines p-datatable-sm p-datatable-customer" >
               <ng-template pTemplate="caption"> </ng-template>
               <ng-template pTemplate="header">
                 <tr>
-                  <th>Código</th>
+                  <th>Item</th>
                   <th>Nome Produto</th>
                   <th style="text-align: center">Quantidade</th>
                   <th style="text-align: right">Preço Venda</th>
@@ -275,7 +275,7 @@
               </ng-template>
               <ng-template pTemplate="body" let-componente key let-rowIndex="rowIndex">
                 <tr [pSelectableRow]="componente">
-                  <td>{{ componente.id }}</td>
+                  <td>{{ rowIndex+1 }}</td>
                   <td>{{ componente.produto.nome }}</td>
                   <td style="text-align: center">{{ componente.qtde }}</td>
                   <td style="text-align: right">
@@ -289,8 +289,8 @@
                   <td>
                     <div class="flex align-items-center justify-content-center">
                       <a>
-                        <button pButton pRipple icon="pi pi-minus" pTooltip="Editar" tooltipPosition="top"
-                          class="p-button-danger -button-s mr-2" (click)="removerCompnente(rowIndex)"
+                        <button pButton pRipple icon="fa-solid fa-trash" pTooltip="Remover" tooltipPosition="top"
+                          class="p-button-rounded p-button-danger" (click)="removerCompnente(rowIndex)"
                           type="button"></button>
                       </a>
                     </div>

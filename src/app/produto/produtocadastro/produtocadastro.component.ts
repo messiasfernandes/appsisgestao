@@ -211,8 +211,12 @@ export class ProdutocadastroComponent implements OnInit {
 
   }
 
-  removerCompnente(indice: number) {
-
+  removerCompnente(index: number) {
+    this.diminuirVarlor(index);
+    this.produto.componentes.splice(index, 1);
+  }
+  diminuirVarlor(index: number) {
+    this.produto = this.produtoService.removerComponente(index, this.produto);
   }
   showLIstaProduto() {
     this.formDialog.showdialog(this.componente)
@@ -235,4 +239,7 @@ export class ProdutocadastroComponent implements OnInit {
       this.bloqueiaboatao = false;
     }
   }
+
+
+
 }
