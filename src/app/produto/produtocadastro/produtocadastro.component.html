@@ -14,31 +14,34 @@
               <div class="col-12 md:col-6 lg:col-7 p-fluid">
                 <span class="p-float-label">
                   <input type="text" id="produtonome" name="nome" required="true" pInputText [(ngModel)]="produto.nome"
-                    placeholder="nome produto" #nomeProduto="ngModel" />
+                    placeholder="nome produto" #nome="ngModel" />
 
                   <label for="produtonome">Nome Produto</label>
+                 <app-message [control]="nome" error="required" text="Informe  Nome do produto"></app-message>
                 </span>
 
               </div>
               <div class="col-12 md:col-6 lg:col-5 p-fluid ">
                 <div class="p-inputgroup">
                   <span class="p-float-label">
-                    <input type="text" id="marca" readonly="true" name="nomeMarca" pInputText
-                      [(ngModel)]="marca.nomeMarca" placeholder="Marca" />
+                    <input type="text" id="marca" name="nomeMarca" pInputText
+                      [(ngModel)]="marca.nomeMarca" placeholder="Marca"  #nomeMarca="ngModel"/>
 
 
                     <label for="marca">Marca</label>
+
                   </span>
                   <button pButton pRipple type="button" (click)="showMarca()" icon="fa-solid fa-plus"
                     pTooltip="Adicionar Marca" class="p-button-lg p-button-success "></button>
                 </div>
+
               </div>
 
               <div class="col-12 md:col-6 lg:col-6 p-fluid">
                 <div class="p-inputgroup">
                   <span class="p-float-label">
-                    <input type="text" id="subgrupo" readonly="true" name="nomeSubgrupo" pInputText
-                      [(ngModel)]="subgrupo.nomeSubgrupo" placeholder="subgrupo" />
+                    <input type="text" id="subgrupo" required="true" name="nomeSubgrupo" pInputText
+                      [(ngModel)]="subgrupo.nomeSubgrupo" placeholder="subgrupo" #nomeSubgrupo="ngModel" />
 
 
                     <label for="subgrupo">Subgrupo</label>
@@ -46,6 +49,7 @@
                   <button pButton pRipple type="button" icon="pi pi-plus" tooltipPosition="top" (click)="showSubgrupo()"
                     pTooltip="Adicionar Subgrupo" class="p-button-lg p-button-info"></button>
                 </div>
+                <app-message [control]="nomeSubgrupo" error="required" text="Informe  Subrgrupo"></app-message>
               </div>
 
 
@@ -214,7 +218,8 @@
               class="p-button-outlined p-button-lg p-button-danger"></button>
           </div>
           <div class="col-6 md:col-6 lg:col-2 p-fluid">
-            <button pButton pRipple type="submit" class="p-button-lg p-button-success" label="Salvar" iconPos="left" icon="fa-solid fa-floppy-disk">
+            <button pButton pRipple type="submit" class="p-button-lg p-button-success" label="Salvar" [disabled]="!f.valid"
+            iconPos="left" icon="fa-solid fa-floppy-disk">
               </button>
           </div>
         </div>

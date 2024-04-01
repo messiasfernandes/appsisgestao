@@ -73,6 +73,8 @@ export class ProdutocadastroComponent implements OnInit {
       }
       if (data.marca != null) {
         this.marca = data.marca;
+      }else{
+
       }
       if (data.produtoDetalhe.length > 0) {
       }
@@ -84,12 +86,17 @@ export class ProdutocadastroComponent implements OnInit {
   }
 
   salvar(form: NgForm) {
-    const propriedadesRemover: string[] = ['marca', 'subgrupo', 'preco', 'situacao', 'nome', 'produtoDetalhe'];
+  // const propriedadesRemover: string[] = ['marca', 'subgrupo', 'preco', 'situacao', 'nome', 'produtoDetalhe'];
 
     // Remover propriedades de cada objeto no array
-    this.produtoService.removerPropriedades(this.produto.componentes, propriedadesRemover);
+ //   this.produtoService.removerPropriedades(this.produto.componentes, propriedadesRemover);
+ //  if(this.marca.id != null){
+
     this.produto.marca = this.marca
+  // }
+
     this.produto.subgrupo = this.subgrupo
+    console.log(this.produto)
     if (this.produto.id != null) {
       this.editarProduto();
     } else {

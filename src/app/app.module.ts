@@ -19,6 +19,7 @@ import { FormdialogmarcaComponent } from './dialogs/formdialogmarca/formdialogma
 import { FormdialogsubgrupoComponent } from './dialogs/formdialogsubgrupo/formdialogsubgrupo.component';
 import { FormcadastromarcadialogComponent } from './dialogs/formcadastromarcadialog/formcadastromarcadialog.component';
 import { ListadialogprodutoComponent } from './dialogs/listadialogproduto/listadialogproduto.component';
+import { MessageComponent } from './shared/message/message.component';
 
 registerLocaleData(localePt, 'pt-BR');
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -34,6 +35,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     FormdialogsubgrupoComponent,
     FormcadastromarcadialogComponent,
     ListadialogprodutoComponent,
+    MessageComponent,
 
   ],
   imports: [
