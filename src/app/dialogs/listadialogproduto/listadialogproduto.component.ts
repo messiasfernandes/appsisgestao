@@ -30,7 +30,7 @@ export class ListadialogprodutoComponent {
  buscar(pagina: number= 0):void{
   this.produtofiltro.pagina = pagina;
   this.serviceProduto
-    .pesquisar(this.produtofiltro)
+    .pesquisarComponente(this.produtofiltro)
     .pipe(
       catchError((erro: any) => {
         return throwError(() => this.erroService.erroHandler(erro));

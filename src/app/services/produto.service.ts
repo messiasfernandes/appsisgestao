@@ -32,7 +32,27 @@ export class ProdutoService {
       headers,
       params,
     });
-console.log(response)
+
+    return response;
+  }
+
+  pesquisarComponente(filtro: Filtro): Observable<Produto> {
+    const headers = new HttpHeaders().append(
+      'Content-Type',
+      'application/json'
+    );
+    let params = new HttpParams()
+      .set('page', filtro.pagina.toString())
+      .set('size', filtro.itensPorPagina.toString());
+
+    if (filtro.parametro) {
+      params = params.set('parametro', filtro.parametro);
+    }
+    const response = this.http.get<Produto>(`${config.baseurl}produtos/componentes`, {
+      headers,
+      params,
+    });
+
     return response;
   }
   detalhar(id: number): Observable<Produto> {
