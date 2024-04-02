@@ -247,6 +247,17 @@ export class ProdutocadastroComponent implements OnInit {
     }
   }
 
+  async showEditaorAddAtributo(indice: number, produtoDetlhe: any) {
+    const editedProdutoSku = await this.formDialog.showdialogProdutoSkuEditar(
+      produtoDetlhe
+    );
 
+
+
+
+    this.produto.produtoDetalhe[indice]= editedProdutoSku;
+
+    console.log(this.produto.produtoDetalhe[indice].atributos);
+  }
 
 }

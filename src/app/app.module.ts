@@ -20,6 +20,8 @@ import { FormdialogsubgrupoComponent } from './dialogs/formdialogsubgrupo/formdi
 import { FormcadastromarcadialogComponent } from './dialogs/formcadastromarcadialog/formcadastromarcadialog.component';
 import { ListadialogprodutoComponent } from './dialogs/listadialogproduto/listadialogproduto.component';
 import { MessageComponent } from './shared/message/message.component';
+import { ProdutoDetalheAtributosComponent } from './dialogs/produto-detalhe-atributos/produto-detalhe-atributos.component';
+import { DialogService } from 'primeng/dynamicdialog';
 
 registerLocaleData(localePt, 'pt-BR');
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -36,6 +38,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     FormcadastromarcadialogComponent,
     ListadialogprodutoComponent,
     MessageComponent,
+    ProdutoDetalheAtributosComponent,
 
   ],
   imports: [
@@ -53,7 +56,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
       }
     }),
   ],
-  providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }, HttpClientModule, ProdutoService, TranslateService, MessageService,
+  providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }, HttpClientModule, ProdutoService, TranslateService, MessageService, DialogService
   ],
   bootstrap: [AppComponent]
 })

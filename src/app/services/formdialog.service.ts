@@ -1,3 +1,4 @@
+import { ProdutoDetalhe } from './../model/produtodetalhe';
 import { FormcadastromarcadialogComponent } from './../dialogs/formcadastromarcadialog/formcadastromarcadialog.component';
 import { Injectable } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
@@ -9,6 +10,8 @@ import { Produto } from '../model/produto';
 import { ListadialogprodutoComponent } from '../dialogs/listadialogproduto/listadialogproduto.component';
 import { Componente } from '../model/componente';
 import { Produtocomponte } from '../model/produtocomponte';
+import { Atributo } from '../model/atributo';
+import { ProdutoDetalheAtributosComponent } from '../dialogs/produto-detalhe-atributos/produto-detalhe-atributos.component';
 
 @Injectable({
   providedIn: 'root'
@@ -134,4 +137,30 @@ export class FormdialogService {
         }
       });
     }
+
+    async showdialogProdutoSkuEditar(produtoDetelhe:any): Promise<ProdutoDetalhe>{
+      return new Promise<ProdutoDetalhe>((resolve, reject) => {
+        this.ref = this.dialogService.open(ProdutoDetalheAtributosComponent, {
+           data: {
+             objetoOriginal: produtoDetelhe
+           },
+           modal: true,
+           header: 'Atributo',
+           width: '80%'
+         });
+
+        this. ref.onClose.subscribe((objetoEditado:ProdutoDetalhe) => {
+          if (objetoEditado) {
+            console.log(objetoEditado);
+            resolve(objetoEditado);
+          } else {
+            reject(); // ou resolve(null) se preferir
+          }
+        });
+
+
+      });
+     }
+
+
 }
