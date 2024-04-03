@@ -11,7 +11,7 @@ export class Produto {
   nome?: string
   descricao?: string
   imagem?: string
-  estoque?: Estoque
+  estoque?: Estoque | null
   marca: Marca
   preco: Preco = new Preco()
   codigoFabricante: string
