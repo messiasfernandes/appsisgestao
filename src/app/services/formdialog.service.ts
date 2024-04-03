@@ -145,8 +145,9 @@ export class FormdialogService {
              objetoOriginal: produtoDetelhe
            },
            modal: true,
-           header: 'Atributo',
-           width: '80%'
+           header: 'Atributos',
+           width: '55%',
+           closable: false
          });
 
         this. ref.onClose.subscribe((objetoEditado:ProdutoDetalhe) => {

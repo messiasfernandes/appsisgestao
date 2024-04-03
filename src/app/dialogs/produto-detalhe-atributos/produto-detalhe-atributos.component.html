@@ -23,15 +23,15 @@
         <button pButton pRipple icon="pi pi-plus" type="button" (click)="addAtributo()"
           pTooltip="Adicionar atributos" class="p-button-success p-button-lg"></button>
       </div>
-      <div class="grid">
+
         <div class="col-12">
           <p-table [value]="produtoDetlhe.atributos" responsiveLayout="stack" selectionMode="single">
             <ng-template pTemplate="header">
               <tr>
-                <th style="width: 500px">Tipo</th>
-                <th style="width: 500px">Valor</th>
+                <th >Tipo</th>
+                <th >Valor</th>
 
-                <th>Opção</th>
+                <th style="text-align: center;">Opção</th>
               </tr>
             </ng-template>
             <ng-template pTemplate="body" let-atributo let-rowIndex="rowIndex">
@@ -39,17 +39,21 @@
                 <td>{{ atributo.chave }}</td>
                 <td>{{ atributo.valor }}</td>
                 <td>
+                  <div class=" flex align-items-center justify-content-center ">
                   <button pButton (click)="remover(rowIndex)" icon="fa-solid fa-minus" pTooltip="Excluir"
                     class="p-button-danger -button-sm p-button-sm"></button>
+                  </div>
                 </td>
               </tr>
             </ng-template>
           </p-table>
         </div>
       </div>
-    </div>
 
 
+    <ng-template pTemplate="footer">
+      <button (click)="selecionarProduto()" pButton pRipple label="selecionar e Fechar"  icon="fa-solid fa-circle-check" class="p-button-raised p-button-secondary"></button>
+    </ng-template>
 
   </p-card>
 

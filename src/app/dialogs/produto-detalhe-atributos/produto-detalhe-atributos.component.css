@@ -1,0 +1,16 @@
+:host::ng-deep .p-button.p-button-secondary, .p-buttonset.p-button-secondary > .p-button, .p-splitbutton.p-button-secondary > .p-button {
+  color: #ffffff;
+  background: #64748B;
+  border: 1px solid #64748B;
+}
+
+:host::ng-deep .p-button.p-button-secondary, .p-buttonset.p-button-secondary > .p-button, .p-splitbutton.p-button-secondary > .p-button {
+  color: #ffffff;
+  background: #64748B;
+  border: 0 none;
+}
+.p-button.p-button-secondary:enabled:hover, .p-buttonset.p-button-secondary > .p-button:enabled:hover, .p-splitbutton.p-button-secondary > .p-button:enabled:hover {
+  background: rgba(71, 85, 105, 0.92);
+  color: #ffffff;
+  border-color: transparent;
+}
