@@ -4,6 +4,7 @@ import { ConfirmationService, LazyLoadEvent, MessageService } from 'primeng/api'
 import { throwError } from 'rxjs/internal/observable/throwError';
 import { catchError } from 'rxjs/internal/operators/catchError';
 import { Filtro } from 'src/app/model/filtro';
+import { Produto } from 'src/app/model/produto';
 import { ProdutoService } from 'src/app/services/produto.service';
 
 @Component({
@@ -16,7 +17,7 @@ export class ProdutolistaComponent {
   produtos: any[] = [];
   totalRegistros = 0;
 
-
+ produto = new Produto()
   @ViewChild('tabela') grid: any;
   constructor(private produtoService: ProdutoService,
     private erroService: ErrohandlerService,
@@ -35,7 +36,12 @@ export class ProdutolistaComponent {
         .subscribe((dados: any) => {
           console.log(dados.content);
           this.produtos = dados.content;
-
+           if(this.produtos.length==1){
+            this.produto= this.produtos[0]
+            var total= this.produto.preco.precovenda*3
+            console.log(total)
+            console.log(this.produto)
+           }
           this.totalRegistros = dados.totalElements;
         });
         console.log(this.produtos)
