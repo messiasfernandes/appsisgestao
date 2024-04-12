@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LazyLoadEvent, TreeNode } from 'primeng/api';
+import { Table } from 'primeng/table/table';
 import { throwError } from 'rxjs/internal/observable/throwError';
 import { catchError } from 'rxjs/internal/operators/catchError';
 import { Filtro } from 'src/app/model/filtro';
@@ -12,6 +13,7 @@ import { ProdutoService } from 'src/app/services/produto.service';
   styleUrls: ['./consultaestoque-mmovimento.component.css']
 })
 export class ConsultaestoqueMmovimentoComponent implements OnInit {
+  expandedRows: { [key: string]: boolean } = {};
   produtos: TreeNode[] = [];
   cols: any[];
   totalRegistros=0
@@ -48,6 +50,21 @@ export class ConsultaestoqueMmovimentoComponent implements OnInit {
    aoMudarPagina(event: LazyLoadEvent) {
     const pagina = event!.first! / event!.rows!;
     this.buscar(pagina);
+  }
+
+  expandRow(rowData: any, table: Table, level: number) {
+    // Custom logic to expand row
+    this.expandedRows[rowData.id + '_' + level] = !this.expandedRows[rowData.id + '_' + level];
+    table.onRowExpand.emit({
+      data: rowData,
+      originalEvent: null
+    });
+  }
+
+  isRowExpanded(rowData: any, level: number): boolean {
+    console.log(rowData)
+
+    return this.expandedRows[rowData.id + '_' + level];
   }
 
 }
