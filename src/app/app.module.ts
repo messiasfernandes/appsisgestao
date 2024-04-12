@@ -1,5 +1,5 @@
 import { PrimengModule } from './shared/primeng/primeng.module';
-import { LOCALE_ID, NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
@@ -22,6 +22,7 @@ import { ListadialogprodutoComponent } from './dialogs/listadialogproduto/listad
 import { MessageComponent } from './shared/message/message.component';
 import { ProdutoDetalheAtributosComponent } from './dialogs/produto-detalhe-atributos/produto-detalhe-atributos.component';
 import { DialogService } from 'primeng/dynamicdialog';
+import { ConsultaestoqueMmovimentoComponent } from './estoqueMovimento/consultaestoque-mmovimento/consultaestoque-mmovimento.component';
 
 registerLocaleData(localePt, 'pt-BR');
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -39,6 +40,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     ListadialogprodutoComponent,
     MessageComponent,
     ProdutoDetalheAtributosComponent,
+    ConsultaestoqueMmovimentoComponent,
 
   ],
   imports: [
@@ -56,6 +58,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
       }
     }),
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }, HttpClientModule, ProdutoService, TranslateService, MessageService, DialogService
   ],
   bootstrap: [AppComponent]

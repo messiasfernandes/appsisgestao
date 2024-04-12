@@ -19,6 +19,8 @@ import {DialogService, DynamicDialogConfig} from 'primeng/dynamicdialog';
 import {ToastModule} from 'primeng/toast';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import { TabViewModule } from 'primeng/tabview';
+import { CalendarModule } from "primeng/calendar";
+import {TreeModule} from 'primeng/tree';
 @NgModule({
   declarations: [],
   imports: [
@@ -41,7 +43,9 @@ import { TabViewModule } from 'primeng/tabview';
     MessageModule,
     ToastModule,
     ConfirmDialogModule,
-    TabViewModule
+    TabViewModule,
+    CalendarModule,
+    TreeModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers:[MessageService, ConfirmationService, DialogService,DynamicDialogConfig]

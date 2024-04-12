@@ -68,6 +68,8 @@ export class MenuLateralComponent implements OnInit {
           {
             label: 'Estoque Movimento',
             icon: 'fa-solid fa-warehouse fa-xl',
+            routerLink: ['/movimentacoes'],
+            command: () => this.closeSidebar(),
           },
           {
             label: 'Importar Nota fiscal',

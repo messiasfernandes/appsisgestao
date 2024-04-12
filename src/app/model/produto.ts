@@ -9,13 +9,12 @@ import { TipoProduto } from "../enumerado/tipoproduto"
 export class Produto {
   id!: number
   nome?: string
-  descricao?: string
+  descricao: string
   imagem?: string
-  estoque?: Estoque | null
+  estoque: Estoque | null
   marca: Marca
   preco: Preco = new Preco()
   codigoFabricante: string
-
   tipoProduto : TipoProduto
   subgrupo: Subgrupo
   produtoDetalhe?: ProdutoDetalhe [] = []

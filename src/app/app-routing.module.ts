@@ -2,6 +2,7 @@ import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProdutolistaComponent } from './produto/produtolista/produtolista.component';
 import { ProdutocadastroComponent } from './produto/produtocadastro/produtocadastro.component';
+import { ConsultaestoqueMmovimentoComponent } from './estoqueMovimento/consultaestoque-mmovimento/consultaestoque-mmovimento.component';
 
 const routes: Routes = [
   {
@@ -13,9 +14,14 @@ const routes: Routes = [
     component: ProdutocadastroComponent,
   },
   { path: 'produtos/:id', component: ProdutocadastroComponent },
+
+  {
+    path: 'movimentacoes',
+    component: ConsultaestoqueMmovimentoComponent,
+  },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

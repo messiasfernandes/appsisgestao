@@ -1,0 +1,36 @@
+<div class="container">
+  <p-card header="Lista de Movimentações">
+
+  <div class="grid">
+       <button type="button" (click)="buscar()" pButton icon="fa-solid fa-search" class=" p-button-lg"
+      styleClass="p-button-warn"></button>
+
+      <div class="col-12" >
+
+        <p-treeTable [value]="produtos">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Nome</th>
+              <th>Marca</th>
+              <th>Subgrupo</th>
+              <!-- Outras colunas -->
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowNode let-rowData="rowData">
+            <tr>
+              <td>{{rowData.nome}}</td>
+              <td>{{rowData.marca}}</td>
+              <td>{{rowData.subgrupo}}</td>
+              <!-- Outras células -->
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="rowexpansion" let-rowNode let-rowData="rowData">
+            <p-treeTable [value]="rowData.componentes">
+              <!-- Colunas e templates para os componentes -->
+            </p-treeTable>
+          </ng-template>
+        </p-treeTable>
+      </div>
+  </div>
+  </p-card>
+</div>
