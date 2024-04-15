@@ -82,9 +82,29 @@
 
                   </tr><!-- Display row data -->
 
-                  <tr *ngIf="isRowExpanded(produto.produtoDetalhe, level)">
-                    <!-- Conteúdo expandido -->
-                  </tr>
+
+            </ng-template>
+
+            <ng-template pTemplate="rowexpansion" let-produto let-level="rowIndex">
+              <tr *ngIf="isRowExpanded(produto.produtoDetalhe, level)">
+                <tr>
+                  <th style="text-align: center;"> Expandir</th>
+                  <th>Id </th>
+                  <th>Codigo Barra </th>
+
+                  <th style="text-align: center;">Qautidade </th>
+                  <th>Unidade</th>
+
+
+                  <th style="text-align: center;">Ações</th>
+                </tr>
+
+            </ng-template>
+
+            <ng-template pTemplate="rowexpansion" let-detalhe let-level="detalhe.id">
+              <tr *ngIf="isRowExpanded(detalhe.atributos, level)">
+                <!-- Conteúdo expandido -->
+              </tr>
             </ng-template>
         </p-table>
 
