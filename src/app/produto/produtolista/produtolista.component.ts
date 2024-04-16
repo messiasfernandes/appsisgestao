@@ -36,13 +36,8 @@ export class ProdutolistaComponent {
         .subscribe((dados: any) => {
           console.log(dados.content);
           this.produtos = dados.content;
-           if(this.produtos.length==1){
-            this.produto= this.produtos[0]
-            var total= this.produto.preco.precovenda*3
-            console.log(total)
-            console.log(this.produto)
-           }
           this.totalRegistros = dados.totalElements;
+          console.log(this.produtos)
         });
         console.log(this.produtos)
      }

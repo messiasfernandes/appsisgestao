@@ -3,110 +3,156 @@
 
     <div class="card">
 
-
+      <form autocomplete="off" (ngSubmit)="buscar()">
       <div class=" grid">
 
-        <div class="col-6 md:col-6 lg:col-4 p-fluid">
-          <form autocomplete="off" (ngSubmit)="buscar()">
+        <div class="col-12 md:col-6 lg:col-3 p-fluid">
+
             <span class="p-float-label">
               <span class="p-float-label p-input-icon-right">
                 <i class="pi pi-search"></i>
-                <input type="text" id="inputgroup" name="paramentro" pInputText [(ngModel)]="produtofiltro.parametro"
+                <input type="text" id="inputgroup" name="paramentro" pInputText [(ngModel)]="filtro.parametro"
                   class="p-inputtext" placeholder="id, nome do produto, código ean 13" />
                 <label for="inputgroup">Pesquisar</label>
               </span>
             </span>
-          </form>
+
 
         </div>
-        <div class="col-6 md:col-6 lg:col-2 p-fluid">
-          <button pButton icon="pi pi-plus-circle" type="button" pTooltip="Adicionar Produto" label="novo"
-            routerLink="/produtos/novo" routerLinkActive="active-link" class="p-button-success p-button-lg"></button>
+        <div class="col-12 md:col-6 lg:col-2 p-fluid">
+          <span class="p-float-label">
+            <p-calendar inputId="calendar" [(ngModel)]="filtro.datanicio "    appendTo="body" name="datanicio" ></p-calendar>
+            <label for="calendar">Data da Início</label>
+        </span>
         </div>
+        <div class="col-12 md:col-6 lg:col-2 p-fluid">
+          <span class="p-float-label">
+            <p-calendar inputId="calendar" [(ngModel)]="filtro.datafim"   appendTo="body" name="datafim" ></p-calendar>
+            <label for="calendar">Data da Início</label>
+        </span>
+      </div>
+
+      <div class="col-12 md:col-6 lg:col-3 p-fluid">
+        <span class="p-float-label">
+          <p-dropdown [options]="opercoes" id="unidade" [autoDisplayFirst]="false" name="operacao" [filter]="true"
+            appendTo="body" [(ngModel)]="filtro.operacao"></p-dropdown>
+          <label for="unidade">Operações</label>
+        </span>
 
       </div>
+         <div class="col-6 md:col-6 lg:col-2 p-fluid">
+            <button pButton pRipple  class="p-button-lg p-button-success" label="Pesquisar" (click)="buscar()"
+            iconPos="left" icon="fa-solid fa-search">
+              </button>
+          </div>
+
+      </div>
+    </form>
       <div class="grid">
         <div class="col-12 ">
 
-          <p-table #dt [value]="produtos" dataKey="id">
-            <ng-template pTemplate="header">
-              <tr>
-                <th style="text-align: center;"> Expandir</th>
-                <th>Id </th>
-                <th>Nome </th>
+          <p-table [value]="movimentacaoes" dataKey="id" responsiveLayout="stack"
+          styleClass="p-datatable-gridlines p-datatable-sm p-datatable-customer" [lazy]="true" selectionMode="single"
+          (onLazyLoad)="aoMudarPagina($event)" [paginator]="true" [totalRecords]="totalRegistros"
+          [rows]="filtro.itensPorPagina"
+          >
 
-                <th style="text-align: center;">Estoque </th>
-                <th>Subgrupo</th>
-                <th>Marca </th>
+          <ng-template pTemplate="header">
+            <tr>
+              <th style="text-align: center;"> Expandir</th>
+              <th>Id </th>
+              <th>Data da movimentacao </th>
 
-                <th style="text-align: center;">Ações</th>
-              </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-produto let-level="rowIndex">
-                <!-- Display row data -->
-                <tr>
-                  <tr [pSelectableRow]="produto">
-                    <td>
-                      <button type="button" pButton pRipple [pRowToggler]="produto"
-                      class="p-button-text p-button-rounded p-button-plain"
-                      [icon]="isRowExpanded(produto , level) ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
-                    </td>
-
-                    <td>{{ produto.id }}</td>
-                    <td>{{ produto.nome }}</td>
-
-                    <td style="text-align: center;">
-
-                      <span [style.color]="produto.situacao === 'Disponvel' ? 'blue' : 'red'">{{ produto.situacao
-                        }}</span>
+              <th style="text-align: center;">Opercão </th>
+              <th>Tipo de Movimentção</th>
 
 
-                    </td>
-                    <td>{{ produto.subgrupo }}</td>
-                    <td>{{ produto.marca }}</td>
-                    <td>
+              <th style="text-align: center;">Ações</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-movimentacao let-expanded="expanded">
+            <tr [pSelectableRow]="movimentacao">
+              <td>
+                <button type="button" pButton pRipple [pRowToggler]="movimentacao"
+                  class="p-button-text p-button-rounded p-button-plain"
+                  [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+              </td>
 
-                      <div class=" flex align-items-center justify-content-center ">
-                        <a>
+              <td>{{ movimentacao.id }}</td>
+              <td>{{ movimentacao.datamovimento }}</td>
 
-                          <button pButton pRipple icon="fa-solid fa-pen" pTooltip="Editar" tooltipPosition="top"
-                            [routerLink]="['/produtos', produto.id]" class="p-button-primary mr-2 p-button-text"
-                            type="button"></button>
-                        </a>
-                        <button pButton pRipple icon="fa-solid fa-trash " type="button" pTooltip="Excluir"
-                          tooltipPosition="top" class=" p-button-danger mr2 p-button-text "></button>
-                      </div>
+              <td style="text-align: center;">
 
-                    </td>
-
-
-                  </tr><!-- Display row data -->
+                {{ movimentacao.operacao}}
 
 
-            </ng-template>
 
-            <ng-template pTemplate="rowexpansion" let-produto let-level="rowIndex">
-              <tr *ngIf="isRowExpanded(produto.produtoDetalhe, level)">
-                <tr>
-                  <th style="text-align: center;"> Expandir</th>
-                  <th>Id </th>
-                  <th>Codigo Barra </th>
+              </td>
+              <td>{{ movimentacao.tipoMovimentacao }}</td>
 
-                  <th style="text-align: center;">Qautidade </th>
-                  <th>Unidade</th>
+              <td>
+
+                <div class=" flex align-items-center justify-content-center ">
+                  <a>
+
+                    <button pButton pRipple icon="fa-solid fa-pen" pTooltip="Editar" tooltipPosition="top"
+                       class="p-button-primary mr-2 p-button-text"
+                      type="button"></button>
+                  </a>
+                  <button pButton pRipple icon="fa-solid fa-trash " type="button" pTooltip="Excluir"
+                    tooltipPosition="top" class=" p-button-danger mr2 p-button-text "></button>
+                </div>
+
+              </td>
 
 
-                  <th style="text-align: center;">Ações</th>
-                </tr>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="rowexpansion" let-movimento>
+            <tr>
+              <td colspan="7">
+                <div class="p-3">
+                  <p-table [value]="movimento.items" selectionMode="single" responsiveLayout="stack"
+                    dataKey="id" responsiveLayout="stack">
+                    <ng-template pTemplate="header">
+            <tr>
 
-            </ng-template>
+              <th>Id </th>
 
-            <ng-template pTemplate="rowexpansion" let-detalhe let-level="detalhe.id">
-              <tr *ngIf="isRowExpanded(detalhe.atributos, level)">
-                <!-- Conteúdo expandido -->
-              </tr>
-            </ng-template>
+              <th>Produto</th>
+              <th style="text-align: center;">Qtde</th>
+              <th style="text-align: center;">Saldo Anterior</th>
+              <th style="text-align: center;">Total estoque </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-item>
+            <tr [pSelectableRow]="item">
+
+              <td>{{ item.produto.id }}</td>
+
+
+              <td>{{ item.produto.nome }}</td>
+              <td style="text-align: center;">{{ item.qtde }}</td>
+              <td style="text-align: center;">{{ item.saldoanterior }}</td>
+              <td style="text-align: center;">{{ item.produto.estoque.quantidade }}</td>
+            </tr>
+          </ng-template>
+
+
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <td colspan="6">Produto sem varição</td>
+            </tr>
+          </ng-template>
+
+
+
         </p-table>
+      </div>
+      </td>
+      </tr>
+      </ng-template>
+      </p-table>
 
       </div>
 
