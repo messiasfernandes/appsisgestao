@@ -23,6 +23,7 @@ import { MessageComponent } from './shared/message/message.component';
 import { ProdutoDetalheAtributosComponent } from './dialogs/produto-detalhe-atributos/produto-detalhe-atributos.component';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ConsultaestoqueMmovimentoComponent } from './estoqueMovimento/consultaestoque-mmovimento/consultaestoque-mmovimento.component';
+import { EstoquemovimentoDialogComponent } from './dialogs/estoquemovimento-dialog/estoquemovimento-dialog.component';
 
 registerLocaleData(localePt, 'pt-BR');
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -41,6 +42,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     MessageComponent,
     ProdutoDetalheAtributosComponent,
     ConsultaestoqueMmovimentoComponent,
+    EstoquemovimentoDialogComponent,
 
   ],
   imports: [

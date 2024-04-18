@@ -32,26 +32,30 @@
         </span>
       </div>
 
-      <div class="col-12 md:col-6 lg:col-3 p-fluid">
+      <div class="col-12 md:col-6 lg:col-2 p-fluid">
         <span class="p-float-label">
-          <p-dropdown [options]="opercoes" id="unidade" [autoDisplayFirst]="false" name="operacao" [filter]="true"
+          <p-dropdown [options]="opercoes" id="op" [autoDisplayFirst]="false" name="operacao" [filter]="true"
             appendTo="body" [(ngModel)]="filtro.operacao"></p-dropdown>
-          <label for="unidade">Operações</label>
+          <label for="op">Operações</label>
         </span>
 
       </div>
-         <div class="col-6 md:col-6 lg:col-2 p-fluid">
-            <button pButton pRipple  class="p-button-lg p-button-success" label="Pesquisar" (click)="buscar()"
-            iconPos="left" icon="fa-solid fa-search">
+         <div class="col-6 md:col-6 lg:col-1 p-fluid">
+            <button pButton pRipple  class="p-button-lg p-button-success" label="buscar"  (click)="buscar()"
+            iconPos="right" icon="fa-solid fa-search">
               </button>
           </div>
-
+          <div class="col-6 md:col-6 lg:col-2 p-fluid">
+            <button pButton pRipple  class="p-button-lg p-button-primary" label="adicionar" (click)="buscar()"
+            iconPos="right" icon="fa-solid fa-plus">
+              </button>
+          </div>
       </div>
     </form>
       <div class="grid">
         <div class="col-12 ">
 
-          <p-table [value]="movimentacaoes" dataKey="id" responsiveLayout="stack"
+          <p-table [value]="movimentacaoes" dataKey="id" responsiveLayout="stack" [rowHover]="true"
           styleClass="p-datatable-gridlines p-datatable-sm p-datatable-customer" [lazy]="true" selectionMode="single"
           (onLazyLoad)="aoMudarPagina($event)" [paginator]="true" [totalRecords]="totalRegistros"
           [rows]="filtro.itensPorPagina"
@@ -112,10 +116,10 @@
             <tr>
               <td colspan="7">
                 <div class="p-3">
-                  <p-table [value]="movimento.items" selectionMode="single" responsiveLayout="stack"
+                  <p-table [value]="movimento.items" dataKey="id" selectionMode="single" responsiveLayout="stack"
                     dataKey="id" responsiveLayout="stack">
                     <ng-template pTemplate="header">
-            <tr>
+            <tr pSelectableRow="movimento">
 
               <th>Id </th>
 
