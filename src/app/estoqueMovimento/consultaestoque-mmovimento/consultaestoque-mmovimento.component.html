@@ -21,13 +21,13 @@
         </div>
         <div class="col-12 md:col-6 lg:col-2 p-fluid">
           <span class="p-float-label">
-            <p-calendar inputId="calendar" [(ngModel)]="filtro.datanicio "    appendTo="body" name="datanicio" ></p-calendar>
+            <p-calendar inputId="calendar" [(ngModel)]="filtro.datanicio "  dateFormat="dd/mm/yy"   appendTo="body" name="datanicio" ></p-calendar>
             <label for="calendar">Data da Início</label>
         </span>
         </div>
         <div class="col-12 md:col-6 lg:col-2 p-fluid">
           <span class="p-float-label">
-            <p-calendar inputId="calendar" [(ngModel)]="filtro.datafim"   appendTo="body" name="datafim" ></p-calendar>
+            <p-calendar inputId="calendar" [(ngModel)]="filtro.datafim"  dateFormat="dd/mm/yy" appendTo="body" name="datafim" ></p-calendar>
             <label for="calendar">Data da Início</label>
         </span>
       </div>
@@ -120,7 +120,7 @@
               <th>Id </th>
 
               <th>Produto</th>
-              <th style="text-align: center;">Qtde</th>
+              <th style="text-align: center;">Qtde Movimentada</th>
               <th style="text-align: center;">Saldo Anterior</th>
               <th style="text-align: center;">Total estoque </th>
             </tr>

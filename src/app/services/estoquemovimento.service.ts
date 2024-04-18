@@ -25,26 +25,22 @@ export class EstoquemovimentoService {
     let params = new HttpParams()
       .set('page', filtro.pagina.toString())
       .set('size', filtro.itensPorPagina.toString())
-      .set('tipo', filtro.operacao ? filtro.operacao : Operacao.Entrada); // Verifica se filtro.operacao é definido
+      .set('tipo', filtro.operacao ? filtro.operacao : '');
+      // Verifica se filtro.operacao é definido
 
-      // Convertendo data de início para string no formato YYYY-MM-DD
- // Convertendo data de fim para string no formato YYYY-MM-DD
-
-// Aqui você pode usar dataInicioStr e dataFimStr para enviar para a API
-//console.log("Data de início como string: " + dataInicioStr);
-  ///console.log("Data de fim como string: " + dataFimStr);
 
     if (filtro.parametro) {
       params = params.set('parametro', filtro.parametro);
     }
     if (filtro.datanicio) {
       let dataInicioStr: string = filtro.datanicio.toISOString().split('T')[0];
-      params = params.set('datanicio', dataInicioStr);
+      params = params.set('datainicio', dataInicioStr);
     }
     if (filtro.datafim) {
       let dataFimStr: string =filtro.datafim.toISOString().split('T')[0];
       console.log(filtro.datafim.toDateString())
       params = params.set('datafim', dataFimStr);
+
     }
 
     const response = this.http.get<Estoquemovimentacao>(`${config.baseurl}movimentacoesestoque`, {
