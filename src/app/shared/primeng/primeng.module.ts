@@ -21,6 +21,7 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import { TabViewModule } from 'primeng/tabview';
 import { CalendarModule } from "primeng/calendar";
 import {TreeModule} from 'primeng/tree';
+import { AutoCompleteModule } from "primeng/autocomplete";
 @NgModule({
   declarations: [],
   imports: [
@@ -45,7 +46,8 @@ import {TreeModule} from 'primeng/tree';
     ConfirmDialogModule,
     TabViewModule,
     CalendarModule,
-    TreeModule
+    TreeModule,
+    AutoCompleteModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers:[MessageService, ConfirmationService, DialogService,DynamicDialogConfig]

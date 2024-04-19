@@ -35,6 +35,9 @@ export class ProdutolistaComponent {
         )
         .subscribe((dados: any) => {
           console.log(dados.content);
+          console.log(dados.totalPages)
+console.log(dados.totalElements)
+console.log(dados.size)
           this.produtos = dados.content;
           this.totalRegistros = dados.totalElements;
           console.log(this.produtos)

@@ -46,7 +46,7 @@
               </button>
           </div>
           <div class="col-6 md:col-6 lg:col-2 p-fluid">
-            <button pButton pRipple  class="p-button-lg p-button-primary" label="adicionar" (click)="buscar()"
+            <button pButton pRipple  class="p-button-lg p-button-primary" label="adicionar" (click)="adionarMOvimentacao()"
             iconPos="right" icon="fa-solid fa-plus">
               </button>
           </div>
@@ -55,10 +55,10 @@
       <div class="grid">
         <div class="col-12 ">
 
-          <p-table [value]="movimentacaoes" dataKey="id" responsiveLayout="stack" [rowHover]="true"
-          styleClass="p-datatable-gridlines p-datatable-sm p-datatable-customer" [lazy]="true" selectionMode="single"
-          (onLazyLoad)="aoMudarPagina($event)" [paginator]="true" [totalRecords]="totalRegistros"
-          [rows]="filtro.itensPorPagina"
+          <p-table [value]="movimentacaoes" [paginator]="true" dataKey="id" responsiveLayout="stack" [rowHover]="true"
+          [rows]="filtro.itensPorPagina" responsiveLayout="stack"
+          styleClass="p-datatable-gridlines p-datatable-sm p-datatable-customer" dataKey="id" [lazy]="true"
+          (onLazyLoad)="aoMudarPagina($event)"  [totalRecords]="totalRegistros"
           >
 
           <ng-template pTemplate="header">
@@ -117,7 +117,7 @@
               <td colspan="7">
                 <div class="p-3">
                   <p-table [value]="movimento.items" dataKey="id" selectionMode="single" responsiveLayout="stack"
-                    dataKey="id" responsiveLayout="stack">
+                    dataKey="id" responsiveLayout="stack"  >
                     <ng-template pTemplate="header">
             <tr pSelectableRow="movimento">
 

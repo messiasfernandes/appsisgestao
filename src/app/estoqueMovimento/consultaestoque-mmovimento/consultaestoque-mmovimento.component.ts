@@ -8,6 +8,7 @@ import { catchError } from 'rxjs/internal/operators/catchError';
 import { Movimentacaofiltro } from 'src/app/model/movimentacaofiltro';
 import { ErrohandlerService } from 'src/app/services/errohandler.service';
 import { EstoquemovimentoService } from 'src/app/services/estoquemovimento.service';
+import { FormdialogService } from 'src/app/services/formdialog.service';
 
 
 @Component({
@@ -15,11 +16,11 @@ import { EstoquemovimentoService } from 'src/app/services/estoquemovimento.servi
   templateUrl: './consultaestoque-mmovimento.component.html',
   styleUrls: ['./consultaestoque-mmovimento.component.css']
 })
-export class ConsultaestoqueMmovimentoComponent implements OnInit {
-  expandedRows: { [key: string]: boolean } = {};
+export class ConsultaestoqueMmovimentoComponent  {
+
   movimentacaoes: any[] = [];
 
-  totalRegistros=0
+  totalRegistros: number=0
   datInicio: Date
   dataFim : Date
 
@@ -28,16 +29,17 @@ export class ConsultaestoqueMmovimentoComponent implements OnInit {
   filtro = new Movimentacaofiltro()
   constructor(private estoqueMovimentoservice : EstoquemovimentoService,
     private erroService: ErrohandlerService,
+    private fomrdiaLogService: FormdialogService
   ){
     this.opercoes = Object.keys(Operacao).map((key) => ({
       label: Operacao[key],
       value: key,
     }));
   }
-  ngOnInit(): void {
-
- // this.buscar();
+  adionarMOvimentacao(){
+    this.fomrdiaLogService.showMovimentacoes();
   }
+
   buscar(pagina: number= 0):void{
     this.filtro.pagina = pagina;
 
@@ -52,14 +54,15 @@ export class ConsultaestoqueMmovimentoComponent implements OnInit {
       .subscribe((dados: any) => {
         console.log(dados.content);
         this.movimentacaoes = dados.content;
-
         this.totalRegistros = dados.totalElements;
-        console.log(this.movimentacaoes)
+
       });
-      console.log(this.movimentacaoes)
+
    }
    aoMudarPagina(event: LazyLoadEvent) {
+
     const pagina = event!.first! / event!.rows!;
+    console.log('pagina'+ pagina)
     this.buscar(pagina);
   }
 

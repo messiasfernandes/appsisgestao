@@ -1,1 +1,28 @@
-<p>estoquemovimento-dialog works!</p>
+<div class="container">
+  <div class="grid nested-grid">
+
+    <div class="col-8 md:col-6 lg:col-8 p-fluid">
+      <span class="p-float-label">
+        <p-autoComplete
+          [(ngModel)]="produto.id"
+          appendTo="body"
+          [showEmptyMessage]="true"
+          field="nome"
+          [suggestions]="produtos"
+          (completeMethod)="listarProdutos($event)"
+          name="nome"
+          id="campo"
+          [required]="true"
+          inputId="autocomplete"
+          [minLength]="2"
+          emptyMessage="Registro não ncontrato"
+          #nome="ngModel"
+></p-autoComplete>
+
+
+      </span>
+
+  </div>
+
+
+</div>
