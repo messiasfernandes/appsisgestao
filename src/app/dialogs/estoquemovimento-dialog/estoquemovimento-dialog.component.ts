@@ -1,59 +1,51 @@
 import { Component, OnInit } from '@angular/core';
-import { LazyLoadEvent } from 'primeng/api';
+import { LazyLoadEvent, SelectItem } from 'primeng/api';
+import { windowToggle } from 'rxjs';
+import { Operacao } from 'src/app/enumerado/opercao';
 import { Estoquemovimentacao } from 'src/app/model/estoquemovimentacao';
 import { Filtro } from 'src/app/model/filtro';
+import { ItemMovimentacao } from 'src/app/model/item-movimentacao';
 import { Produto } from 'src/app/model/produto';
 import { ProdutoService } from 'src/app/services/produto.service';
 
 @Component({
   selector: 'app-estoquemovimento-dialog',
   templateUrl: './estoquemovimento-dialog.component.html',
-  styleUrls: ['./estoquemovimento-dialog.component.css']
+  styleUrls: ['./estoquemovimento-dialog.component.css'],
 })
-export class EstoquemovimentoDialogComponent implements OnInit{
-  produtos : any[]=[]
-  produto  = new Produto()
-  produtofiltro = new  Filtro()
-  totalRegistros=0;
-  movitencao = new Estoquemovimentacao()
-  constructor( private produtoService: ProdutoService){
+export class EstoquemovimentoDialogComponent implements OnInit {
+  produtos: any[] = [];
 
+  produtofiltro = new Filtro();
+  totalRegistros = 0;
+   item = new ItemMovimentacao()
+  movitencao = new Estoquemovimentacao();
+  opercoes: SelectItem[] = [];
+  constructor(private produtoService: ProdutoService) {
+    this.opercoes = Object.keys(Operacao).map((key) => ({
+      label: Operacao[key],
+      value: key,
+    }));
   }
-  ngOnInit(): void {
-     this.buscar();
-  }
-  aciionarMovimento(){
+  ngOnInit(): void {}
+  adicionarMovimento() {
 
+   console.log(this.item.produto.nome)
+
+   this.movitencao.items.push(this.item)
+   console.log(this.movitencao.items)
+    this.item = new ItemMovimentacao()
   }
-  listarProdutos(evento:any){
+  listarProdutos(evento: any) {
     console.log(evento.query);
-  this.produtofiltro.parametro = evento.query;
-  this.produtoService.pesquisar(this.produtofiltro).subscribe(
-    (reposta: any)=>{
-      this.produtos =reposta;
-    }
-  )
+    this.produtofiltro.parametro = evento.query;
+    this.produtofiltro.pagina = 0;
+    console.log(this.produtofiltro.parametro)
+    this.produtoService.pesquisar(this.produtofiltro).subscribe(( resposta:any)=>{
+      this.produtos= resposta.content;
+      this.totalRegistros= resposta.totalElements;
 
-  }
-  buscar(pagina: number= 0):void{
-    this.produtofiltro.pagina = pagina;
-    this.produtoService
-      .pesquisar(this.produtofiltro)
+    })
 
-
-      .subscribe((dados: any) => {
-        console.log(dados.content);
-        console.log(dados.totalPages)
-console.log(dados.totalElements)
-console.log(dados.size)
-        this.produtos = dados.content;
-        this.totalRegistros = dados.totalElements;
-        console.log(this.produtos)
-      });
-      console.log(this.produtos)
-   }
-   aoMudarPagina(event: LazyLoadEvent) {
-    const pagina = event!.first! / event!.rows!;
-    this.buscar(pagina);
   }
 }

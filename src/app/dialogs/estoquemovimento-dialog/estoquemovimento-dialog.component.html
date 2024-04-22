@@ -1,28 +1,81 @@
 <div class="container">
+  <br>
   <div class="grid nested-grid">
 
-    <div class="col-8 md:col-6 lg:col-8 p-fluid">
+    <div class="col-12 md:col-6 lg:col-6 p-fluid">
       <span class="p-float-label">
-        <p-autoComplete
-          [(ngModel)]="produto.id"
-          appendTo="body"
-          [showEmptyMessage]="true"
-          field="nome"
-          [suggestions]="produtos"
-          (completeMethod)="listarProdutos($event)"
-          name="nome"
-          id="campo"
-          [required]="true"
-          inputId="autocomplete"
-          [minLength]="2"
-          emptyMessage="Registro não ncontrato"
-          #nome="ngModel"
-></p-autoComplete>
+        <p-autoComplete [(ngModel)]="item.produto" appendTo="body" [showEmptyMessage]="true" field="nome"
+          [suggestions]="produtos" (completeMethod)="listarProdutos($event)" name="nome" id="campo" [required]="true"
+          inputId="autocomplete" [minLength]="2" emptyMessage="Registro não ncontrato"></p-autoComplete>
 
-
+        <label for="op">Produtos</label>
+      </span>
+    </div>
+    <div class="col-12 md:col-6 lg:col-2 p-fluid">
+      <span class="p-float-label">
+        <p-dropdown [options]="opercoes" id="op" [autoDisplayFirst]="false" name="operacao" [filter]="true"
+          appendTo="body" [(ngModel)]="movitencao.operacao"></p-dropdown>
+        <label for="op">Operações</label>
       </span>
 
-  </div>
+    </div>
 
+    <div class="col-12 md:col-6 lg:col-2 p-fluid">
+      <span class="p-float-label">
+        <p-inputNumber [(ngModel)]="item.qtde" id="mult" name="qtde" mode="decimal" dec [showButtons]="true"
+          precision="0" inputId="minmax-buttons" [min]="1" [max]="100">
+        </p-inputNumber>
+        <label for="mult">Multiplicador</label>
+      </span>
+    </div>
+
+    <div class="col-5 md:col-6 lg:col-1 p-fluid">
+      <button pButton icon="pi pi-plus" pTooltip="Adicoinar Componente" (click)="adicionarMovimento()"
+        class="p.p-button-success p-button-lg"></button>
+    </div>
+  </div>
+  <div class="grid">
+    <div class="col-12 tabela">
+      <p-table [value]="movitencao.items" responsiveLayout="stack" selectionMode="single" [rowHover]="true" #tabela
+        dataKey="id" styleClass="p-datatable-gridlines p-datatable-sm p-datatable-customer">
+        <ng-template pTemplate="caption"> </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Item</th>
+            <th>Nome Produto</th>
+            <th style="text-align: center">Quantidade</th>
+            <th style="text-align: right">Preço Venda</th>
+            <th style="text-align: right">Subtotal</th>
+
+
+            <th style="text-align: center">Opções</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item  let-rowIndex="rowIndex">
+          <tr [pSelectableRow]="item">
+            <td>{{ rowIndex+1 }}</td>
+            <td>{{ item.produto.nome}}</td>
+            <td style="text-align: center">{{ item.qtde }}</td>
+            <td style="text-align: right">
+              {{ item.produto.preco.precovenda | currency:'BRL' }}
+            </td>
+            <td style="text-align: right">
+              {{ item.saldoanterior}}
+            </td>
+
+
+            <td>
+              <div class="flex align-items-center justify-content-center">
+                <a>
+                  <button pButton pRipple icon="fa-solid fa-trash" pTooltip="Remover" tooltipPosition="top"
+                    class="p-button-rounded p-button-danger" type="button"></button>
+                </a>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
 
 </div>
