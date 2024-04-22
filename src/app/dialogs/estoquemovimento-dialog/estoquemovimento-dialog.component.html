@@ -2,8 +2,8 @@
   <br>
   <div class="grid nested-grid">
 
-    <div class="col-12 md:col-6 lg:col-6 p-fluid">
-      <span class="p-float-label">
+    <div class="col-12 md:col-6 lg:col-4 p-fluid">
+      <span class="p-float-label">"
         <p-autoComplete [(ngModel)]="item.produto" appendTo="body" [showEmptyMessage]="true" field="nome"
           [suggestions]="produtos" (completeMethod)="listarProdutos($event)" name="nome" id="campo" [required]="true"
           inputId="autocomplete" [minLength]="2" emptyMessage="Registro não ncontrato"></p-autoComplete>
@@ -11,10 +11,10 @@
         <label for="op">Produtos</label>
       </span>
     </div>
-    <div class="col-12 md:col-6 lg:col-2 p-fluid">
+    <div class="col-12 md:col-6 lg:col-4 p-fluid">
       <span class="p-float-label">
-        <p-dropdown [options]="opercoes" id="op" [autoDisplayFirst]="false" name="operacao" [filter]="true"
-          appendTo="body" [(ngModel)]="movitencao.operacao"></p-dropdown>
+        <p-dropdown [options]="tiposdeMovivmentacoes" id="op" [autoDisplayFirst]="false" name="tipoMovimentacaoEstoque"  [filter]="true"
+          appendTo="body" [(ngModel)]="movitencao.tipoMovimentacaoEstoque"></p-dropdown>
         <label for="op">Operações</label>
       </span>
 
@@ -75,6 +75,16 @@
           </tr>
         </ng-template>
       </p-table>
+    </div>
+
+    <div class="col-6 md:col-6 lg:col-2 p-fluid">
+      <button pButton pRipple type="button" icon="pi pi-sign-in" label="Voltar" routerLink="/produtos"
+        class="p-button-outlined p-button-lg p-button-danger"></button>
+    </div>
+    <div class="col-6 md:col-6 lg:col-2 p-fluid">
+      <button pButton pRipple type="submit" class="p-button-lg p-button-success" label="Salvar"  (click)="salvarMovimentaceos()"
+      iconPos="left" icon="fa-solid fa-floppy-disk">
+        </button>
     </div>
   </div>
 

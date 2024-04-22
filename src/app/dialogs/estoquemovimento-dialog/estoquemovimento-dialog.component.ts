@@ -1,12 +1,18 @@
+import { ItemMovimentacao } from './../../model/item-movimentacao';
+import { EstoquemovimentoService } from 'src/app/services/estoquemovimento.service';
+import { map } from 'rxjs/internal/operators/map';
+import { TipodemovimentacaoService } from './../../services/tipodemovimentacao.service';
+import { Tipodemovimentacao } from './../../model/tipodemovimentacao';
 import { Component, OnInit } from '@angular/core';
-import { LazyLoadEvent, SelectItem } from 'primeng/api';
-import { windowToggle } from 'rxjs';
+import { LazyLoadEvent, MessageService, SelectItem } from 'primeng/api';
+import { catchError, throwError, windowToggle } from 'rxjs';
 import { Operacao } from 'src/app/enumerado/opercao';
 import { Estoquemovimentacao } from 'src/app/model/estoquemovimentacao';
 import { Filtro } from 'src/app/model/filtro';
-import { ItemMovimentacao } from 'src/app/model/item-movimentacao';
+
 import { Produto } from 'src/app/model/produto';
 import { ProdutoService } from 'src/app/services/produto.service';
+import { ErrohandlerService } from 'src/app/services/errohandler.service';
 
 @Component({
   selector: 'app-estoquemovimento-dialog',
@@ -15,37 +21,76 @@ import { ProdutoService } from 'src/app/services/produto.service';
 })
 export class EstoquemovimentoDialogComponent implements OnInit {
   produtos: any[] = [];
-
+  tiposdeMovivmentacoes: any[] = []
   produtofiltro = new Filtro();
   totalRegistros = 0;
-   item = new ItemMovimentacao()
+  item = new ItemMovimentacao()
   movitencao = new Estoquemovimentacao();
   opercoes: SelectItem[] = [];
-  constructor(private produtoService: ProdutoService) {
+  constructor(private produtoService: ProdutoService,
+    private tipomovimentacaosService: TipodemovimentacaoService,
+    private estoqueMovimentoService: EstoquemovimentoService,
+    private errorHandler: ErrohandlerService,
+    private messageService: MessageService,
+  ) {
     this.opercoes = Object.keys(Operacao).map((key) => ({
       label: Operacao[key],
       value: key,
     }));
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.listaTipoMoviementacao()
+  }
   adicionarMovimento() {
 
-   console.log(this.item.produto.nome)
+    console.log(this.item.produto)
 
-   this.movitencao.items.push(this.item)
-   console.log(this.movitencao.items)
+    this.movitencao.items.push(this.item)
+
+    console.log(this.movitencao.items)
     this.item = new ItemMovimentacao()
   }
+  listaTipoMoviementacao() {
+    this.tipomovimentacaosService.pesquisar().subscribe(
+      (resposta: any) =>
+        this.tiposdeMovivmentacoes = resposta.map((t: any) => ({ label: t.tipoMovimentacao, value: t.operacao })))
+
+
+
+  }
   listarProdutos(evento: any) {
+
     console.log(evento.query);
     this.produtofiltro.parametro = evento.query;
     this.produtofiltro.pagina = 0;
     console.log(this.produtofiltro.parametro)
-    this.produtoService.pesquisar(this.produtofiltro).subscribe(( resposta:any)=>{
-      this.produtos= resposta.content;
-      this.totalRegistros= resposta.totalElements;
+    this.produtoService.pesquisar(this.produtofiltro).subscribe((resposta: any) => {
+
+      this.produtos = resposta.content;
+
+      this.totalRegistros = resposta.totalElements;
 
     })
 
+   //this.removerPropriedades(this.produtos, valoresParaRemover);
+
+   console.log(this.produtos)
+  }
+
+  salvarMovimentaceos() {
+
+    let valoresParaRemover = ['marca', 'subgrupo', 'situacao'];
+    this.removerPropriedades(this.movitencao.items, valoresParaRemover)
+    console.log(this.movitencao)
+
+  }
+  removerPropriedades(array: ItemMovimentacao[], props: string[]){
+    array.forEach(obj => {
+      for (let prop of props) {
+        if (obj.produto.hasOwnProperty(prop)) {
+          delete obj.produto[prop as keyof ItemMovimentacao]; // Usando keyof para garantir a tipagem correta
+        }
+      }
+    });
   }
 }

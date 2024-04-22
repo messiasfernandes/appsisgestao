@@ -50,6 +50,17 @@ export class EstoquemovimentoService {
 
     return response;
 }
-
+salvar(objeto: Estoquemovimentacao): Observable<Estoquemovimentacao> {
+  const headers = new HttpHeaders().append(
+    'Content-Type',
+    'application/json'
+  );
+  const resposta = this.http.post<Estoquemovimentacao>(
+    `${config.baseurl}movimentacoesestoque`,
+    objeto,
+    { headers }
+  );
+  return resposta;
+}
 
 }
