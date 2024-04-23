@@ -3,7 +3,7 @@
   <div class="grid nested-grid">
 
     <div class="col-12 md:col-6 lg:col-4 p-fluid">
-      <span class="p-float-label">"
+      <span class="p-float-label">
         <p-autoComplete [(ngModel)]="item.produto" appendTo="body" [showEmptyMessage]="true" field="nome"
           [suggestions]="produtos" (completeMethod)="listarProdutos($event)" name="nome" id="campo" [required]="true"
           inputId="autocomplete" [minLength]="2" emptyMessage="Registro não ncontrato"></p-autoComplete>
@@ -14,7 +14,8 @@
     <div class="col-12 md:col-6 lg:col-4 p-fluid">
       <span class="p-float-label">
         <p-dropdown [options]="tiposdeMovivmentacoes" id="op" [autoDisplayFirst]="false" name="tipoMovimentacaoEstoque"  [filter]="true"
-          appendTo="body" [(ngModel)]="movitencao.tipoMovimentacaoEstoque"></p-dropdown>
+
+          appendTo="body" [(ngModel)]="movitencao.tipoMovimentacaoEstoque.id"></p-dropdown>
         <label for="op">Operações</label>
       </span>
 
@@ -23,9 +24,9 @@
     <div class="col-12 md:col-6 lg:col-2 p-fluid">
       <span class="p-float-label">
         <p-inputNumber [(ngModel)]="item.qtde" id="mult" name="qtde" mode="decimal" dec [showButtons]="true"
-          precision="0" inputId="minmax-buttons" [min]="1" [max]="100">
+          precision="0" inputId="minmax-buttons" [min]="1" [max]="10000">
         </p-inputNumber>
-        <label for="mult">Multiplicador</label>
+        <label for="mult">Quantidade</label>
       </span>
     </div>
 

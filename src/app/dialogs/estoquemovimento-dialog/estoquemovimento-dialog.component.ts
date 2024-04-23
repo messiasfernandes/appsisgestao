@@ -21,22 +21,22 @@ import { ErrohandlerService } from 'src/app/services/errohandler.service';
 })
 export class EstoquemovimentoDialogComponent implements OnInit {
   produtos: any[] = [];
-  tiposdeMovivmentacoes: any[] = []
+ // tiposdeMovivmentacoes: any[] = []
   produtofiltro = new Filtro();
   totalRegistros = 0;
   item = new ItemMovimentacao()
   movitencao = new Estoquemovimentacao();
-  opercoes: SelectItem[] = [];
+  tiposdeMovivmentacoes: SelectItem[] = [];
   constructor(private produtoService: ProdutoService,
     private tipomovimentacaosService: TipodemovimentacaoService,
     private estoqueMovimentoService: EstoquemovimentoService,
     private errorHandler: ErrohandlerService,
     private messageService: MessageService,
   ) {
-    this.opercoes = Object.keys(Operacao).map((key) => ({
-      label: Operacao[key],
-      value: key,
-    }));
+   // this.opercoes = Object.keys(Operacao).map((key) => ({
+    //  label: Operacao[key],
+   //   value: key,
+  //  }));
   }
   ngOnInit(): void {
     this.listaTipoMoviementacao()
@@ -53,11 +53,13 @@ export class EstoquemovimentoDialogComponent implements OnInit {
   listaTipoMoviementacao() {
     this.tipomovimentacaosService.pesquisar().subscribe(
       (resposta: any) =>
-        this.tiposdeMovivmentacoes = resposta.map((t: any) => ({ label: t.tipoMovimentacao, value: t.operacao })))
+        this.tiposdeMovivmentacoes = resposta.map((t: Tipodemovimentacao) => ({ label: t.descricao, value: t.id })))
+
 
 
 
   }
+
   listarProdutos(evento: any) {
 
     console.log(evento.query);
@@ -78,10 +80,21 @@ export class EstoquemovimentoDialogComponent implements OnInit {
   }
 
   salvarMovimentaceos() {
-
+ /// this.movitencao.tipoMovimentacaoEstoque= this.tiposdeMovivmentacoes[0]
     let valoresParaRemover = ['marca', 'subgrupo', 'situacao'];
     this.removerPropriedades(this.movitencao.items, valoresParaRemover)
-    console.log(this.movitencao)
+   console.log(this.movitencao)
+   this.estoqueMovimentoService.salvar(this.movitencao).pipe(
+    catchError((erro: any) => {
+      return throwError(() => this.errorHandler.erroHandler(erro));
+    })
+  ).subscribe();
+
+  this.messageService.add({
+    severity: 'success',
+    detail: 'Produto salvo com sucesso!',
+  });
+
 
   }
   removerPropriedades(array: ItemMovimentacao[], props: string[]){
