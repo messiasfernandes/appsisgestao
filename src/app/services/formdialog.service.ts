@@ -117,10 +117,12 @@ export class FormdialogService {
 
     });
   }
-  showMovimentacoes() {
-    const ref = this.dialogService.open(EstoquemovimentoDialogComponent, {
+   showMovimentacoes() {
+    return this.dialogService.open(EstoquemovimentoDialogComponent, {
       header: "Adiconar Moviemntações",
-      width: "70%"
+      width: "70%",
+      resizable: false,
+      modal:true
     });
   }
 

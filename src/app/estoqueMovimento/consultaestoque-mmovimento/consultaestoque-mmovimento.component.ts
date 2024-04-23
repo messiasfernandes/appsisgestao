@@ -1,6 +1,7 @@
 import { Operacao } from '../../enumerado/opercao';
 import { Component, OnInit } from '@angular/core';
 import { LazyLoadEvent, SelectItem } from 'primeng/api';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Table } from 'primeng/table/table';
 import { throwError } from 'rxjs/internal/observable/throwError';
 import { catchError } from 'rxjs/internal/operators/catchError';
@@ -19,7 +20,7 @@ import { FormdialogService } from 'src/app/services/formdialog.service';
 export class ConsultaestoqueMmovimentoComponent  {
 
   movimentacaoes: any[] = [];
-
+   ref: DynamicDialogRef;
   totalRegistros: number=0
   datInicio: Date
   dataFim : Date
@@ -37,7 +38,11 @@ export class ConsultaestoqueMmovimentoComponent  {
     }));
   }
   adionarMOvimentacao(){
-    this.fomrdiaLogService.showMovimentacoes();
+    this.ref =  this.fomrdiaLogService.showMovimentacoes();
+    this.ref .onClose.subscribe(() => {
+
+      this.buscar();
+    });
   }
 
   buscar(pagina: number= 0):void{

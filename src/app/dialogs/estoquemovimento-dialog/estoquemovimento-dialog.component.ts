@@ -13,6 +13,7 @@ import { Filtro } from 'src/app/model/filtro';
 import { Produto } from 'src/app/model/produto';
 import { ProdutoService } from 'src/app/services/produto.service';
 import { ErrohandlerService } from 'src/app/services/errohandler.service';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'app-estoquemovimento-dialog',
@@ -32,6 +33,7 @@ export class EstoquemovimentoDialogComponent implements OnInit {
     private estoqueMovimentoService: EstoquemovimentoService,
     private errorHandler: ErrohandlerService,
     private messageService: MessageService,
+    private ref: DynamicDialogRef
   ) {
    // this.opercoes = Object.keys(Operacao).map((key) => ({
     //  label: Operacao[key],
@@ -94,8 +96,11 @@ export class EstoquemovimentoDialogComponent implements OnInit {
     severity: 'success',
     detail: 'Produto salvo com sucesso!',
   });
+  this.fecharForm()
 
-
+  }
+  fecharForm(){
+    this.ref.close()
   }
   removerPropriedades(array: ItemMovimentacao[], props: string[]){
     array.forEach(obj => {
