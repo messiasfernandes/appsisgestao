@@ -1,0 +1,14 @@
+.bg-red {
+  background-color: #ffcccc;
+}
+
+.bg-green {
+  background-color: #ccffcc;
+}
+
+.p-card {
+  border-radius: 8px;
+}
+.text-red {
+  color: red;
+}

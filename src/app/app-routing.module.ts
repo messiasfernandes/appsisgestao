@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProdutolistaComponent } from './produto/produtolista/produtolista.component';
 import { ProdutocadastroComponent } from './produto/produtocadastro/produtocadastro.component';
 import { ConsultaestoqueMmovimentoComponent } from './estoqueMovimento/consultaestoque-mmovimento/consultaestoque-mmovimento.component';
+import { MesacomandasComponent } from './comandas/mesacomandas/mesacomandas.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,10 @@ const routes: Routes = [
   {
     path: 'movimentacoes',
     component: ConsultaestoqueMmovimentoComponent,
+  },
+  {
+    path: 'comandas',
+    component: MesacomandasComponent,
   },
 ];
 @NgModule({

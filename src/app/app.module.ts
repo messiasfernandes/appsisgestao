@@ -24,6 +24,7 @@ import { ProdutoDetalheAtributosComponent } from './dialogs/produto-detalhe-atri
 import { DialogService } from 'primeng/dynamicdialog';
 import { ConsultaestoqueMmovimentoComponent } from './estoqueMovimento/consultaestoque-mmovimento/consultaestoque-mmovimento.component';
 import { EstoquemovimentoDialogComponent } from './dialogs/estoquemovimento-dialog/estoquemovimento-dialog.component';
+import { MesacomandasComponent } from './comandas/mesacomandas/mesacomandas.component';
 
 registerLocaleData(localePt, 'pt-BR');
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -43,6 +44,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     ProdutoDetalheAtributosComponent,
     ConsultaestoqueMmovimentoComponent,
     EstoquemovimentoDialogComponent,
+    MesacomandasComponent,
 
   ],
   imports: [

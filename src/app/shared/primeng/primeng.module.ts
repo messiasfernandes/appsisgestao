@@ -22,6 +22,7 @@ import { TabViewModule } from 'primeng/tabview';
 import { CalendarModule } from "primeng/calendar";
 import {TreeModule} from 'primeng/tree';
 import { AutoCompleteModule } from "primeng/autocomplete";
+import { DataViewModule, DataViewLayoutOptions } from 'primeng/dataview';
 @NgModule({
   declarations: [],
   imports: [
@@ -47,7 +48,8 @@ import { AutoCompleteModule } from "primeng/autocomplete";
     TabViewModule,
     CalendarModule,
     TreeModule,
-    AutoCompleteModule
+    AutoCompleteModule,
+    DataViewModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers:[MessageService, ConfirmationService, DialogService,DynamicDialogConfig]

@@ -4,7 +4,7 @@ import { Filtro } from "./filtro";
 export class Movimentacaofiltro extends Filtro {
 
 
-  operacao : Operacao | undefined
+  operacao : Operacao ;
   datanicio: Date
   datafim: Date
 }

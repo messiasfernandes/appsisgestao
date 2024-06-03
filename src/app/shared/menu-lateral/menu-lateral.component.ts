@@ -106,7 +106,7 @@ export class MenuLateralComponent implements OnInit {
           {
             label: 'Caixa',
             icon: 'fa-solid fa-cash-register fa-xl',
-            //      routerLink: ['/contaspagar'],
+                routerLink: ['/comandas'],
           },
         ],
       },

@@ -1,0 +1,59 @@
+<h2>comdna</h2>
+<div class="col-12">
+  <button pButton pRipple icon="pi pi-check" pTooltip="Selecionoar" tooltipPosition="top"
+  class="p-button-primary mr-2" (click)=" getMesa()"  type="button"></button>
+</div>
+<div class="container">
+  <div class="card">
+
+    <div class="grid">
+      <div class="col-12">
+        <p-dataView #dv [value]="mesas" [layout]="layout">
+            <ng-template pTemplate="header">
+                <form autocomplete="off" (ngSubmit)="getMesa()"></form>
+                <div class="flex justify-content-end">
+                    <p-dataViewLayoutOptions [layout]="layout"></p-dataViewLayoutOptions>
+                </div>
+            </ng-template>
+
+            <ng-template let-comanda pTemplate="listItem">
+                <div class= "col-12 md:col-6 lg:col-4 p-fluid">
+                    <div class="text-2xl font-bold" [ngClass]="{'text-red': comanda.mesa.statusMesa === 'ocupada'}">
+                        {{ comanda.mesa.statusMesa }}
+                    </div>
+                    <span class="text-2xl font-semibold">{{ comanda.total | currency: 'BRL' }}</span>
+                </div>
+            </ng-template>
+
+            <ng-template let-comanda pTemplate="gridItem">
+                <div class="col-12 sm:col-6 lg:col-12 xl:col-2 p-2">
+                    <div class="p-4 border-1 surface-border surface-card border-round">
+                        <div class="flex flex-wrap align-items-center justify-content-between gap-2">
+                            <span class="flex align-items-center gap-2">
+                                <i class="pi pi-tag"></i>
+                                <span class="font-semibold" >
+                                    {{ comanda.mesa.loclizacao}}
+                                </span>
+                            </span>
+                        </div>
+<br>
+                        <div class="flex align-items-center justify-content-center">
+                            <div class="text-2xl font-bold" [ngClass]="{'text-red': comanda.mesa.statusMesa === 'ocupada'}">
+                              <span [style.color]=" comanda.mesa.statusMesa === 'Disponvel' ? 'blue' : 'red'">{{  comanda.mesa.statusMesa
+                              }}</span>
+
+                            </div>
+                        </div>
+                        <br>
+                        <div class="flex align-items-center justify-content-between">
+                            <span class="text-2xl font-semibold">{{ comanda.total | currency: 'BRL' }}</span>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </p-dataView>
+    </div>
+  </div>
+
+</div>
+
