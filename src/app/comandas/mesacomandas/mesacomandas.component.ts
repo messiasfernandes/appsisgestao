@@ -9,7 +9,7 @@ import { ComandaService } from 'src/app/services/comanda.service';
 export class MesacomandasComponent implements OnInit {
   layout: string = 'list';
   mesas: any[] = [];
-
+  total: number = 0;
   constructor(private comandaService: ComandaService){}
   ngOnInit(): void {
     this.getMesa;
@@ -20,10 +20,20 @@ export class MesacomandasComponent implements OnInit {
  this.comandaService.pesquisar().subscribe((dados: any) => {
   console.log(dados);
   this.mesas = dados;
-
+this.calculateTotal();
 
 });
 console.log(this.mesas)
 
   }
+  calculateTotal(): void {
+    this.total =0;
+    this.mesas.forEach(mesa => {
+      mesa.total = mesa.comandas.reduce((acc, comanda) => acc + comanda.total, 0);
+      this.total += mesa.total;
+    });
+
+  }
+
+
 }
