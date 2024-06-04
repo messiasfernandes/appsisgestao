@@ -21,7 +21,7 @@
                     <div class="text-2xl font-bold" [ngClass]="{'text-red': mesa.statusMesa === 'ocupada'}">
                         {{ mesa.statusMesa }}
                     </div>
-                    <span class="text-2xl font-semibold">{{ total | currency: 'BRL' }}</span>
+                    <span class="text-2xl font-semibold">{{mesa. total | currency: 'BRL' }}</span>
                 </div>
             </ng-template>
 
@@ -46,7 +46,7 @@
                         </div>
                         <br>
                         <div class="flex align-items-center justify-content-between">
-                            <span class="text-2xl font-semibold">{{ total | currency: 'BRL' }}</span>
+                            <span class="text-2xl font-semibold">{{ mesa.total | currency: 'BRL' }}</span>
                         </div>
                     </div>
                 </div>
