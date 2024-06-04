@@ -32,14 +32,14 @@
                             <span class="flex align-items-center gap-2">
                                 <i class="pi pi-tag"></i>
                                 <span class="font-semibold" >
-                                    {{ mesa.numerodaMesa}}
+                                    {{'Mesa' +mesa.numerodaMesa}}
                                 </span>
                             </span>
                         </div>
 <br>
                         <div class="flex align-items-center justify-content-center">
                             <div class="text-2xl font-bold" [ngClass]="{'text-red': mesa.statusMesa === 'ocupada'}">
-                              <span [style.color]=" mesa.statusMesa === 'Disponvel' ? 'blue' : 'red'">{{  mesa.statusMesa
+                              <span [style.color]=" mesa.statusMesa === 'Livre' ? 'blue' : 'red'">{{  mesa.statusMesa
                               }}</span>
 
                             </div>
