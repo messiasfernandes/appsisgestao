@@ -8,7 +8,7 @@ import { ComandaService } from 'src/app/services/comanda.service';
 })
 export class MesacomandasComponent implements OnInit {
   layout: string = 'list';
-  mesas: any[] = [];
+  comandas: any[] = [];
   total:number=0
 
   constructor(private comandaService: ComandaService){
@@ -22,7 +22,7 @@ export class MesacomandasComponent implements OnInit {
   getMesa( ) {
  this.comandaService.pesquisar().subscribe((dados: any) => {
   console.log(dados);
-  this.mesas = dados;
+  this.comandas = dados;
 
 });
 }

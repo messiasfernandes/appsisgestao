@@ -119,7 +119,7 @@ export class FormdialogService {
   }
    showMovimentacoes() {
     return this.dialogService.open(EstoquemovimentoDialogComponent, {
-      header: "Adiconar Moviemntações",
+      header: "Adicionar Movimentações",
       width: "70%",
       resizable: false,
       modal:true
