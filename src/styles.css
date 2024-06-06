@@ -4,6 +4,7 @@
 @import "primeflex/primeflex.css";
 @import "primeicons/primeicons.css";
 @import "@fortawesome/fontawesome-free/css/all.min.css";
+@import url("material-icons/iconfont/material-icons.css");
 body{
   padding: 1em;
   font-family: -apple-system, BlinkMacSystemFont, “Segoe UI”, Roboto, Helvetica, Arial, sans-serif, “Apple Color Emoji”, “Segoe UI Emoji”, “Segoe UI Symbol”;

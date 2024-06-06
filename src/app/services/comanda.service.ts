@@ -16,7 +16,7 @@ export class ComandaService {
       'Content-Type',
       'application/json'
     );
-    const response = this.http.get<any>(`${config.baseurl}mesas`,  {
+    const response = this.http.get<any>(`${config.baseurl}comandas`,  {
       headers,
 
     });

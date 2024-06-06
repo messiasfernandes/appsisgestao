@@ -1,8 +1,4 @@
-<h2>comdna</h2>
-<div class="col-12">
-  <button pButton pRipple icon="pi pi-check" pTooltip="Selecionoar" tooltipPosition="top"
-  class="p-button-primary mr-2" (click)=" getMesa()"  type="button"></button>
-</div>
+
 <div class="container">
   <div class="card">
 
@@ -16,38 +12,73 @@
                 </div>
             </ng-template>
 
-            <ng-template let-mesa pTemplate="listItem">
-                <div class= "col-12 md:col-6 lg:col-3 p-fluid">
-                    <div class="text-2xl font-bold" [ngClass]="{'text-red': mesa.statusMesa === 'ocupada'}">
-                        {{ mesa.statusMesa }}
+            <ng-template let-comanda pTemplate="listItem">
+                <div class="col-12">
+                    <div class="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4">
+                        <img class="w-9 sm:w-16rem xl:w-10rem shadow-2 block xl:block mx-auto border-round"  [src]="'/assets/table_restaurant_20dp_FILL0_wght400_GRAD0_opsz20.svg'"/>
+                        <div class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
+                            <div class="flex flex-column align-items-center sm:align-items-start gap-3">
+                                <div class="text-2xl font-bold text-900">{{'Mesa ' + comanda.mesa.numerodaMesa }}</div>
+
+                                <div class="flex align-items-center gap-3">
+                                    <span class="flex align-items-center gap-2">
+                                        <i class="pi pi-tag"></i>
+                                        <div class="text-2xl font-bold" [ngClass]="{'text-red': comanda.mesa.statusMesa === 'ocupada'}">
+                                            <span [style.color]=" comanda.mesa.statusMesa === 'Livre' ? 'blue' : 'red'">{{comanda.mesa.statusMesa
+                                            }}</span>
+
+                                          </div>
+                                    </span>
+
+                                </div>
+                            </div>
+                            <div class="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2">
+                                <span class="text-2xl font-semibold">{{  comanda.total | currency : 'BRL'}}</span>
+                                <button pButton icon="pi pi-shopping-cart" class="md:align-self-end mb-2 p-button-rounded" ></button>
+                            </div>
+                        </div>
                     </div>
-                    <span class="text-2xl font-semibold">{{mesa. total | currency: 'BRL' }}</span>
                 </div>
             </ng-template>
 
-            <ng-template let-mesa pTemplate="gridItem">
+            <ng-template let-comanda pTemplate="gridItem">
+
+
                 <div class="col-12 sm:col-6 lg:col-12 xl:col-2 p-2">
+
                     <div class="p-4 border-1 surface-border surface-card border-round">
+
+                      <div class="text-3xl font-bold">
+                      <span class="material-icons">table_restaurant</span>
+                        <span class="font-semibold" >
+                            {{'Mesa' + comanda.mesa.numerodaMesa}}
+                        </span>
+                      </div>
                         <div class="flex flex-wrap align-items-center justify-content-between gap-2">
+
                             <span class="flex align-items-center gap-2">
-                                <i class="pi pi-tag"></i>
-                                <span class="font-semibold" >
-                                    {{'Mesa' +mesa.numerodaMesa}}
-                                </span>
+                              <span class="font-semibold" >
+                                {{'Capacidade ' +  comanda.mesa.capacidade + ' lugares'}}
+                              </span>
+
                             </span>
                         </div>
 <br>
                         <div class="flex align-items-center justify-content-center">
-                            <div class="text-2xl font-bold" [ngClass]="{'text-red': mesa.statusMesa === 'ocupada'}">
-                              <span [style.color]=" mesa.statusMesa === 'Livre' ? 'blue' : 'red'">{{  mesa.statusMesa
+                            <div class="text-2xl font-bold" [ngClass]="{'text-red': comanda.mesa.statusMesa === 'ocupada'}">
+                              <span [style.color]=" comanda.mesa.statusMesa === 'Livre' ? 'blue' : 'red'">{{comanda.mesa.statusMesa
                               }}</span>
 
                             </div>
                         </div>
                         <br>
                         <div class="flex align-items-center justify-content-between">
-                            <span class="text-2xl font-semibold">{{ mesa.total | currency: 'BRL' }}</span>
-                        </div>
+                            <span class="text-2xl font-semibold">{{ comanda.total | currency: 'BRL' }}</span>
+
+
+
+                          <button pButton icon="pi pi-shopping-cart" class="p-button-rounded"></button>
+                      </div>
                     </div>
                 </div>
             </ng-template>
