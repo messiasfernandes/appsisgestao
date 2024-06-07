@@ -4,6 +4,7 @@ import { ProdutolistaComponent } from './produto/produtolista/produtolista.compo
 import { ProdutocadastroComponent } from './produto/produtocadastro/produtocadastro.component';
 import { ConsultaestoqueMmovimentoComponent } from './estoqueMovimento/consultaestoque-mmovimento/consultaestoque-mmovimento.component';
 import { MesacomandasComponent } from './comandas/mesacomandas/mesacomandas.component';
+import { CadastroComandaComponent } from './comandas/cadastro-comanda/cadastro-comanda.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,10 @@ const routes: Routes = [
   {
     path: 'comandas',
     component: MesacomandasComponent,
+  },
+  {
+    path: 'comandas/novo',
+    component: CadastroComandaComponent,
   },
 ];
 @NgModule({

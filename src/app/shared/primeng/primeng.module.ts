@@ -49,7 +49,8 @@ import { DataViewModule, DataViewLayoutOptions } from 'primeng/dataview';
     CalendarModule,
     TreeModule,
     AutoCompleteModule,
-    DataViewModule
+    DataViewModule,
+
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers:[MessageService, ConfirmationService, DialogService,DynamicDialogConfig]
